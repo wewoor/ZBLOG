@@ -28,22 +28,10 @@
 	min-height: 600px;
 }
 
-
 body {
 	margin:0;
 	padding:0;
-	background-image:url(../images/body-bg.jpg);
-	background-repeat: repeat-x;
-
-}
-
-#showCatlog {
-	position: fixed;
-	top: 300px;
-	left: 70px;
-	border: thin solid #CCCCCC;
-	width: 200px;
-	height: 300px;
+	background:url(../images/body-bg.jpg) repeat;
 }
 
 #top #top_main {
@@ -54,8 +42,9 @@ body {
 }
 
 #top #top_main .nav {
-	float: right;
+	float: left;
 	margin-top: 15px;
+	margin-left: 50px;
 	
 }
 
@@ -86,19 +75,6 @@ body {
 	font-family: "黑体";
 }
 
-#center_1 {
-	height: auto;
-	width: 900px;
-	margin-top:5px;
-	margin-bottom:5px;
-	margin-right: auto;
-	margin-left: auto;
-	background-color: #FFFFFF;
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	position: inherit;
-}
 
 #article {
 	padding-top: 80px;
@@ -109,163 +85,41 @@ body {
 	text-align: left;
 	padding-right: 30px;
 	padding-left: 30px;
-	margin: 0px;
-	hight:250px;
-
+	background:#FFF;
 }
 
-.showme {
-	position: fixed;
-	width: 160px;
-	height: 250px;
-	top: 100px;
-	left: 1400px;
+#article .content {
+	height:350px;
+	overflow:hidden;
 }
 
-.head {
-	width: 150px;
-	height: 150px;
-	border: 5px solid #a3d869;
-	border-radius:3px;
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
-	margin-top: 10px;
-	padding: 1px;
-	text-align: center;
+#article .arInfo {
+	text-align:right;
 }
 
-.showme .meInfor {
-	position: relative;
-	margin-top: 10px;
-	width: 100%;
-	text-align: center;
+#article .detail {
+	text-align: right;
 }
 
-.showme .meInfor table {
-	position: relative;
-	margin-left: 10px;
+#article .arInfo ul li {
+	display:inline;
+	display-style:none;
 }
 
-.noteInfor {
-	position:inherit;
-	width:auto;
-	height:30px;
-	
-}
-
-.noteInfor table {
-	float: right;
-}
-
-.showme .meInfor {
-	position: relative;
-	float: left;
-	margin-top: 10px;
-}
-
-.showme .meInfor span {
-	text-align: center;
-	float: left;
-	position: relative;
-	margin-top: 5px;
-}
-
-#getNextPage {
-	margin-right: auto;
-	margin-left: auto;
-	width: 80px;
-	position:inherit;
-	text-align: center;
-	margin-top: 50px;
-	margin-bottom: 30px;
-}
-
-
-/*显示目录*/
-.nextRight {
-	position: fixed;
-	top: 300px;
-	border:#2f3137 solid 1px;
-	margin-left:-2px;
-	border-radius:3px;
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
+#article .arInfo ul li a {
+	color:#575a5d;
 }
 
 #bottom {
-	height: 200px;
-	background-color:#a3d869;
-	width: auto;
-	color:#FFFFFF;
-	font-family: "黑体";
-	position:inherit;
+	height: 80px;
+	padding-top:20px;
 	margin-top: 10px;
-}
- /*css about 目录菜单*/
- 
-#showCatlog ul li {
-	text-decoration:none;
-	display:inline;
-	text-align: left;
-
-}
-
-#showCatlog span {
-	background-color: #CCCCCC;
-	width:100%;
-	position: relative;
-	float: left;
+	color: #000;
+	font: 12px "微软雅黑" bold;
 	text-align: center;
 }
 
-#showCatlog ul {
-	list-style:none;
-	width: 100%;
-	position: relative;
-	margin-top: 5px;
-	float: left;
-	margin-left: 0px;
-}
-
-#showCatlog ul li a:hover {
-	background-color:#999999;
-}
-
-#showCatlog ul li a {
-	width:100%;
-	text-decoration:none;
-	color:#333333;
-	font-family:'helvetica-neue', "​helvetica", "​arial", "​STXihei";
-	font-weight: normal;
-	background-color:#a3d869;
-	border:#CCCCCC solid 1px;
-	border-radius:3px;
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
-	line-height: 25px;
-	text-indent: 2px;
-	margin-left: 10px;
-	text-align: left;
-	padding: 0px;
-	font-size: 12px;
-}
-
-#showCatlog .pagingCatlog {
-	margin-top: 141px;
-	height: 20px;
-	position: relative;
-}
-
-#showCatlog .pagingCatlog a {
-	font-family: "Times New Roman", Times, serif;
-	font-size: 12px;
-	text-decoration: none;
-	margin-left: 10px;
-	color: #333333;
-	padding-top: 5px;
-	padding-right: 5px;
-	padding-left: 5px;
-}
+/*css about 目录菜单*/
 
 #share {
 	position: fixed;
@@ -273,24 +127,26 @@ body {
 	right: 0px;
 }
 
-#readOneArticle {
-	padding-top:20px;
-	font-family:'helvetica-neue',​helvetica,​arial,​STXihei;
-	color: #575a5d;
-	line-height: 25px;
-	text-indent: 30px;
-	text-align: left;
-	padding-right: 30px;
-	padding-left: 30px;
-	margin: 0px;
-	height: auto;
-}
+
 
 /* bootstrap extend*/
 .pagination {
 	text-align: center;
 }
 
+.pagination ul {
+	background:#FFF;
+}
+
 .pagination ul li a {
 	color:#333;
+}
+
+.error {
+	margin: 0 0 10px;
+	height: 200px;
+	color: #000;
+	font: 18px "微软雅黑" bold;
+	text-align:center;
+	padding-top:200px;
 }

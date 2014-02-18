@@ -54,7 +54,7 @@
 	</servlet-mapping>
 	
 	<welcome-file-list>
-		<welcome-file>/article/index.htm</welcome-file>
+		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
 	
 	<!-- 配置session超时时间，单位分钟 -->

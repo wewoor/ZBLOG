@@ -1,38 +1,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<base href="${rc.contextPath}"></base>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Ziv小威博客</title>
-	<link href="${rc.contextPath}/images/head_pic.png" type="image/png" rel="icon"></link>
-	<link href="${rc.contextPath}/stylesheet/index.css" rel="stylesheet" type="text/css" />
-	<link href="${rc.contextPath}/stylesheet/bootstrap.css" rel="stylesheet" type="text/css" />
-	<script language="javascript" type="text/javascript" src="${rc.contextPath}/javascripts/jquery-1.8.0.js"></script>
-	<script language="javascript" type="text/javascript" src="${rc.contextPath}/javascripts/bootstrap.js"></script>
-	<script language="javascript" type="text/javascript" src="${rc.contextPath}/javascripts/jquery-ui-1.8.23.custom.min.js"></script>
+	<#include "/layout/head.ftl">
 </head>
 <body>
 	<!-- header ---->	
 	<#include "/layout/header.ftl">
 	<!-- container ---->
 	<div id="container">
+		<#if articles?exists>
 		<#list articles as article>
 		<div id="article">
 			<h2 align="left">
-				<a style="color:#333333" target="_blank" href="">
+				<a style="color:#333333" target="_blank" href="${rc.contextPath}/article/read.htm?id=${article.id}">
 					${article.title}
 				</a>
 			</h2>
-			<p>${article.content}</p>
-			<p>			
+			<div class="content">
+				${article.content}
+			</div>
+			<div class="detail"><a target="_blank" href="${rc.contextPath}/article/read.htm?id=${article.id}">》》阅读全文</a></div>			
+			<div class="arInfo">			
 				<ul>
 					<li>发布时间：${article.createTime?datetime}</li>
 					<li>浏览次数：${article.readCount}</li>
-					<li><a href="#">评论</a></li>
+					<li><a href="#">评论()</a></li>
 				</ul>
-			</p>
-		</div>	
+			</div>
+		</div>
 		</#list>
+		<#else>
+			<p class="error">没有发现相关的文章</p>
+		</#if>
+		
 		<!--分页 -->
 	   <div class="page">
             <#if page??> 

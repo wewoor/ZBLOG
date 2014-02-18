@@ -1,7 +1,6 @@
 package com.zblog.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +24,12 @@ public class ArticleController extends BaseController {
      * @return
      * @see [类、类#方法、类#成员]
      */
-    @RequestMapping("/index")
-    public ModelAndView getAllArticles(Page page) {
+    @RequestMapping("/page")
+    public ModelAndView getCateArticles(Page page, Integer cat) {
         
         ModelAndView response = new ModelAndView("/index");
         List<Article> articles = null;
+        Article article = null;
         
         if( page == null ) {
             page = new Page();
@@ -37,8 +37,13 @@ public class ArticleController extends BaseController {
             page.setTotalRows(10);
         }
         
-        try {        
-            articles = articleService.getArticles(null, page);
+        if (cat != null) {
+            article = new Article();
+            article.setCategory(cat);
+        }
+        
+        try {
+            articles = articleService.getArticles(article, page);
             if (articles != null) {                
                 //设置page并重新分页
                 page.setTotalRows(articles.size());
@@ -53,36 +58,27 @@ public class ArticleController extends BaseController {
         return response;
     }
     
+
     /**
      * 
      * 获取所以的文章列表，按照时间降序排列
      * @return
      * @see [类、类#方法、类#成员]
      */
-    @RequestMapping("/search")
-    public ModelAndView getArticlesByCate(Article article, Page page) {
+    @RequestMapping("/read")
+    public ModelAndView getArticle(int id) {
         
-        ModelAndView response = new ModelAndView("/index");
-        List<Article> articles = null;
-        
-        if (page == null) {   
-            page = new Page();
-            page.setCurrentPage(0);
-            page.setPageSize(10);
-        }
+        ModelAndView response = new ModelAndView("/article_detail");
+        Article article = new Article();
         
         try {  
-            articles = articleService.getArticles(article, page);
-            if (articles != null) {                
-                //设置page并重新分页
-                page.setTotalRows(articles.size());
-                page.repaginate();      
-            }
+            article.setId(id);
+            article = articleService.getArticle(article);
         } catch (Exception e) {
-            LOGGER.error("ArticleController.getAllArticles();", e.getMessage());
+            LOGGER.error("ArticleController.getArticle();", e.getMessage());
         } 
         
-        response.addObject("articles", articles);                      
+        response.addObject("article", article);                      
         return response;
     }
     

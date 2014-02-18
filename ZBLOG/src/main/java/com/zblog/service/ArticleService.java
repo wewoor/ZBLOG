@@ -18,6 +18,16 @@ public interface ArticleService {
     
     /**
      * 
+     * 获取某一篇文章
+     * @param article
+     * @return
+     * @throws Exception
+     * @see [类、类#方法、类#成员]
+     */
+    public Article getArticle(Article article) throws Exception;
+    
+    /**
+     * 
      * 添加文章
      * @param article
      * @return

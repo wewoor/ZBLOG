@@ -39,6 +39,24 @@
 		ORDER BY create_time ASC limit #{pageNo} , #{pageSize}
 	</select>
 	
+	<select id="getArticle" resultType="com.zblog.dmo.Article" parameterType="com.zblog.dmo.Article">
+		SELECT 
+			<include refid="articleColumns"/>
+		FROM
+			tb_article
+		WHERE
+			deleted=0
+			<if test="id != null">
+				and id=#{id}
+			</if>
+			<if test="title != null">
+				and title=#{title}
+			</if>
+			<if test="category != null">
+				and category=#{category}
+			</if>	
+	</select>
+	
 	<!-- 添加文章 -->
 	<insert id="addArticle" parameterType="com.zblog.dmo.Article">
 		INSERT INTO tb_article

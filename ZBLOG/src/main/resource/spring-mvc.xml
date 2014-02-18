@@ -78,11 +78,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
          <property name="statusCodes">  
                 <props>  
-                    <prop key="commons/404">404</prop>  
+                    <prop key="error/404">404</prop>  
                 </props>  
          </property>
 	    <property name="defaultErrorView">    
-	        <value>/commons/505</value>  
+	        <value>/error/505</value>  
 	    </property>  
 	    <property name="defaultStatusCode">    
 	        <value>500</value>  

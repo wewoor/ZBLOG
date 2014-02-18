@@ -82,4 +82,17 @@ public class ArticleServiceImpl implements ArticleService {
         return false;
     }
     
+    /**
+     * 
+     * 重载方法
+     * @param article
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Article getArticle(Article article)
+        throws Exception {   
+        return articleDao.getArticle(article);
+    }
+    
 }
