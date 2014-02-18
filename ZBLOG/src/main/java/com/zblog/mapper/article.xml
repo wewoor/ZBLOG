@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zblog.dao.ArticleDao">
+    
+
+	<sql id="articleColumns">
+		ID,
+		content,
+		title,
+		category,
+		create_time AS createTime,
+		deleted,
+		read_count AS readCount
+	</sql>
+
+	<!-- 根据相应参数查询查询文章信息（带分页） -->
+	<select id="getArticles" parameterType="java.util.Map" resultType="com.zblog.dmo.Article">
+	    SELECT 
+			<include refid="articleColumns"/>
+		FROM
+			tb_article
+		WHERE
+			deleted=0
+			<if test="id != null">
+				and id=#{id}
+			</if>
+			<if test="title != null">
+				and title=#{title}
+			</if>
+			<if test="content != null">
+				and content=#{content}
+			</if>
+			<if test="createTime != null">
+				and create_time=#{createTime}
+			</if>
+			<if test="category != null">
+				and category=#{category}
+			</if>			
+		ORDER BY create_time ASC limit #{pageNo} , #{pageSize}
+	</select>
+	
+	<!-- 添加文章 -->
+	<insert id="addArticle" parameterType="com.zblog.dmo.Article">
+		INSERT INTO tb_article
+		(
+			content,title,category,now()
+		)
+		VALUES 
+		(
+			#{content},#{title},#{category},now()
+		)
+		<selectKey resultType="int" order="AFTER" keyProperty="id">
+		    <![CDATA[ SELECT LAST_INSERT_ID() AS ID  ]]> 
+		</selectKey>
+	</insert>
+
+	<!-- 更新文章信息 -->
+	<update id="updateArticle" parameterType="com.zblog.dmo.Article">
+		UPDATE tb_article SET
+		<if test="title != null">
+			title=#{title},
+		</if>
+		<if test="content != null">
+			content=#{content},
+		</if>
+		<if test="category != null">
+			category=#{category},
+		</if>		
+		<if test="read_count != null">
+			read_count=#{readCount},
+		</if>
+		<if test="deleted != null">
+			deleted=#{deleted},
+		</if>	
+		WHERE id=#{id}	
+	</update>	
+</mapper>

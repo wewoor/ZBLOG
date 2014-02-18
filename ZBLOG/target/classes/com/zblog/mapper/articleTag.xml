@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zblog.dao.ArticleTagDao">
+    
+
+	<sql id="articleColumns">
+		ID,
+		content,
+		title,
+		category,
+		create_time AS createTime,
+		deleted,
+		read_count AS readCount
+	</sql>
+
+	<!-- 分页查询文章信息 -->
+	<select id="getArticlesByPage" parameterType="java.util.Map" resultType="com.zblog.dmo.Article">
+	    SELECT 
+			<include refid="articleColumns"/>
+		FROM
+			tb_article
+		ORDER BY 
+			create_time desc limit  #{pageNo} , #{pageSize}
+	</select>
+	
+
+</mapper>
