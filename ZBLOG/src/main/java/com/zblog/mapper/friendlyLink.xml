@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zblog.dao.FriendlyLinkDao">
-    
-
-	<sql id="articleColumns">
+   
+	<sql id="friendlyLinkColumns">
 		ID,
-		content,
-		title,
-		category,
-		create_time AS createTime,
-		deleted,
-		read_count AS readCount
+		name,
+		link
 	</sql>
 
-	<!-- 分页查询文章信息 -->
-	<select id="getArticlesByPage" parameterType="java.util.Map" resultType="com.zblog.dmo.Article">
+	<!-- 检索所有友情链接 -->
+	<select id="getFriendlyLinks" resultType="com.zblog.dmo.FriendlyLink">
 	    SELECT 
-			<include refid="articleColumns"/>
+			<include refid="friendlyLinkColumns"/>
 		FROM
-			tb_article
-		ORDER BY 
-			create_time desc limit  #{pageNo} , #{pageSize}
+			tb_friendly_link
 	</select>
 	
+	<!-- 添加新链接 -->
+	<insert id="addFriendlyLink" parameterType="com.zblog.dmo.FriendlyLink">
+		INSERT INTO tb_friendly_link(
+			name,link
+		) VALUES (
+			#{name},#{link}
+		)
+	</insert>
+	
+	<!-- 更新链接 -->
+	<update id="updateFriendLink" parameterType="com.zblog.dmo.FriendlyLink">
+		UPDATE tb_friendly_link SET 
+		<if test="name != null">
+			name=#{name},
+		</if>
+		<if test="link != null">
+			link=#{link}
+		</if>
+	</update>
 
 </mapper>

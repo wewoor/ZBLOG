@@ -1,6 +1,8 @@
 package com.zblog.dao;
 
-import com.zblog.dmo.User;
+import java.util.List;
+
+import com.zblog.dmo.FriendlyLink;
 
 /**
  * 用户Dao
@@ -19,5 +21,19 @@ public interface FriendlyLinkDao {
      * @return
      * @see [类、类#方法、类#成员]
      */
-    public User getUser(User user);
+    List<FriendlyLink> getFriendlyLinks();
+    
+    /**
+     * 添加友情链接
+     * @param friendlyLink
+     * @return
+     */
+    int addFriendlyLink(FriendlyLink friendlyLink);
+    
+    /**
+     * 更新友情链接
+     * @param friendlyLink
+     * @return
+     */
+    int updateFriendLink(FriendlyLink friendlyLink);
 }

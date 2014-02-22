@@ -39,7 +39,7 @@
 		ORDER BY create_time ASC limit #{pageNo} , #{pageSize}
 	</select>
 	
-	<select id="getArticle" resultType="com.zblog.dmo.Article" parameterType="com.zblog.dmo.Article">
+	<select id="getArticle" parameterType="com.zblog.dmo.Article" resultType="com.zblog.dmo.Article">
 		SELECT 
 			<include refid="articleColumns"/>
 		FROM
@@ -61,7 +61,7 @@
 	<insert id="addArticle" parameterType="com.zblog.dmo.Article">
 		INSERT INTO tb_article
 		(
-			content,title,category,now()
+			content,title,category,create_time
 		)
 		VALUES 
 		(
@@ -84,11 +84,11 @@
 		<if test="category != null">
 			category=#{category},
 		</if>		
-		<if test="read_count != null">
+		<if test="readCount != null">
 			read_count=#{readCount},
 		</if>
 		<if test="deleted != null">
-			deleted=#{deleted},
+			deleted=#{deleted}
 		</if>	
 		WHERE id=#{id}	
 	</update>	

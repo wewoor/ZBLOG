@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zblog.dao.NavigatorCategoryDao">
-    
 
-	<sql id="articleColumns">
+	<sql id="navCateColumns">
 		ID,
-		content,
-		title,
-		category,
-		create_time AS createTime,
-		deleted,
-		read_count AS readCount
+		name,
+		link,
+		description,
+		sort
 	</sql>
 
-	<!-- 分页查询文章信息 -->
-	<select id="getArticlesByPage" parameterType="java.util.Map" resultType="com.zblog.dmo.Article">
+	<!-- 获取所有导航分类 -->
+	<select id="getNavigatorCategorys" resultType="com.zblog.dmo.NavigatorCategory">
 	    SELECT 
-			<include refid="articleColumns"/>
+			<include refid="navCateColumns"/>
 		FROM
-			tb_article
+			tb_nav_category
 		ORDER BY 
-			create_time desc limit  #{pageNo} , #{pageSize}
+			sort desc
 	</select>
 	
 

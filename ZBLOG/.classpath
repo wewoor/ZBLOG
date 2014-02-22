@@ -16,5 +16,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
-
+	<classpathentry kind="lib" path="D:/Tomcat/apache-tomcat-6.0.36/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="D:/Tomcat/apache-tomcat-6.0.36/lib/servlet-api.jar"/>
 </classpath>

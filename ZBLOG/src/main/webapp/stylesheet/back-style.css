@@ -1,0 +1,52 @@
+@charset "utf-8";
+/**
+* @author Ziv
+* 2014/02/21
+*/
+
+.wrapper {
+	margin:20px;
+	padding:0px;
+}
+
+.wrapper .bg-nav {
+	float:left;
+	width: 200px;
+	background-color: #EBE9E8;
+}
+
+.bg-nav .nav {
+	height: 380px;
+}
+
+.bg-nav p {
+	text-align: center;
+}
+
+.wrapper .ope-area {
+	margin-left:20px;
+	min-width: 700px;
+}
+
+.wrapper .bg-nav, .wrapper .ope-area {
+	float:left;	
+	min-height:400px;
+}
+
+.title select {
+	width: 150px;
+}
+
+.title ul {
+	margin-left: 0px;
+}
+
+.title ul li {
+	display: inline;
+	text-decoration: none;
+}
+
+.edit-con p {
+	text-align: right;
+	margin-top: 20px;
+}
