@@ -1,8 +1,12 @@
 package com.zblog.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.zblog.dao.UserDao;
+import com.zblog.dmo.User;
 import com.zblog.service.UserService;
+import com.zblog.util.CryptUtils;
 
 /**
  * 用户服务实现类
@@ -14,16 +18,31 @@ import com.zblog.service.UserService;
  */
 @Component
 public class UserServiceImpl implements UserService {
-    
-    /** 
-     * <一句话功能简述>
-     * <功能详细描述>
-     * @param args
-     * @see [类、类#方法、类#成员]
-     */
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
-    }
-    
+
+	@Autowired
+	private UserDao userDao;
+	
+	@Override
+	public User getUser(User user) {
+		
+		if (user.getPassword() != null) {				
+			//对密码加密，然后进行匹配查询
+			user.setPassword(CryptUtils.
+					encryptString(user.getPassword()));
+		}
+		return userDao.getUser(user);
+	}
+
+	@Override
+	public boolean updateUser(User user) {
+		
+		if (user.getPassword() != null) {	
+			//对密码加密
+			user.setPassword(CryptUtils.
+					encryptString(user.getPassword()));
+		}
+		int result = userDao.updateUser(user);
+		return result > 0;
+	}
+     
 }

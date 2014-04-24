@@ -63,14 +63,41 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		<property name="basePackage" value="com.zblog.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
-
+		
+	<!-- hibernate配置事务 -->
+	<!-- <bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" /> -->
+		
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- 注解方式配置事物 -->
-	<!--  --><tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- 注解方式配置事物 
+	<tx:annotation-driven transaction-manager="transactionManager" />-->
+		
+	<!-- 配置事务的传播特性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 所有方法以get开头用read-only其它开启事务
+			org.springframework.dao.InvalidDataAccessApiUsageException: 
+			Write operations are not allowed in read-only mode (FlushMode.MANUAL):
+			Turn your Session into FlushMode.COMMIT/AUTO or remove 'readOnly' marker 
+			from transaction definition. -->
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			
+			<tx:method name="get*" propagation="REQUIRED"  read-only="true"/>
+			<tx:method name="*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- 配置事务的切入点 -->
+	<aop:config>
+		<aop:pointcut id="targetMethod" 
+		expression="execution(* com.zblog.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="targetMethod" order="3"/>
+	</aop:config>
 
 	<!-- 配置druid监控spring jdbc -->
 	<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">

@@ -1,14 +1,7 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
   <display-name>Archetype Created Web Application</display-name>
-  <context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring.xml,classpath:spring-mybatis.xml</param-value>
-  </context-param>
   
   <filter>
 		<description>字符集过滤器</description>
@@ -25,8 +18,12 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>*.htm</url-pattern>
 	</filter-mapping>
-
 	
+  	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring.xml,classpath:spring-mybatis.xml</param-value>
+  	</context-param>
+
 	<listener>
 		<description>spring监听器</description>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -36,6 +33,7 @@
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
 	
+  	
 	<!-- spring mvc servlet -->
 	<servlet>
 		<description>spring mvc servlet</description>
@@ -56,6 +54,24 @@
 	<welcome-file-list>
 		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<!-- 404错误页面定位 -->
+	<error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/view/error/404.jsp</location>
+    </error-page>
+	
+	<error-page>
+        <error-code>400</error-code>
+        <location>/WEB-INF/view/error/404.jsp</location>
+    </error-page>
+	
+	
+	<!-- 505异常 -->
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/WEB-INF/view/error/505.jsp</location>
+    </error-page>
 	
 	<!-- 配置session超时时间，单位分钟 -->
 	<session-config>

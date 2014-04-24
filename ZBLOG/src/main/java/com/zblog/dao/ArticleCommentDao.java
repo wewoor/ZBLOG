@@ -1,8 +1,8 @@
 package com.zblog.dao;
 
 import java.util.List;
+import java.util.Map;
 
-import com.zblog.dmo.Article;
 import com.zblog.dmo.ArticleComment;
 
 /**
@@ -19,8 +19,30 @@ public interface ArticleCommentDao {
     /**
      * 查询某文章的评论信息
      * @param param
-     * @return
+     * @return List<ArticleComment>
      * @see [类、类#方法、类#成员]
      */
-    public List<ArticleComment> getArticleComments(Article article);
+    public List<ArticleComment> getArticleComments(Map<String, Object> param);
+    
+    /**
+     * 添加文章评论
+     * @param comment
+     * @return int
+     */
+    public int insertArticleCommment(ArticleComment comment);
+    
+    /**
+     * 删除文章评论
+     * @param comment
+     * @return int
+     */
+    public int deletArticleComment(ArticleComment comment);
+    
+    /**
+     * 统计某文章的评论数量
+     * @param articleId
+     * @return int
+     */
+    public int countOfArticleComments(Map<String, Object> param);
+    
 }

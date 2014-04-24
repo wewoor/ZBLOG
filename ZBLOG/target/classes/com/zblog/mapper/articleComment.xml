@@ -2,26 +2,67 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zblog.dao.ArticleCommentDao">
     
-
 	<sql id="articleColumns">
 		ID,
+		article_id AS articleId,
+		user_name AS userName,
 		content,
-		title,
-		category,
+		blog_url AS blogUrl,
 		create_time AS createTime,
-		deleted,
-		read_count AS readCount
+		email,
+		father_comm AS fatherComm,
+		be_feedback AS feedback
 	</sql>
 
-	<!-- 分页查询文章信息 -->
-	<select id="getArticlesByPage" parameterType="java.util.Map" resultType="com.zblog.dmo.Article">
+	<!-- 分页查询文章评论信息 -->
+	<select id="getArticleComments" parameterType="java.util.Map" 
+		resultType="com.zblog.dmo.ArticleComment">
 	    SELECT 
 			<include refid="articleColumns"/>
 		FROM
-			tb_article
+			tb_article_comment
+		WHERE 
+			1=1
+		<if test="articleId != null">	
+			AND article_id=#{articleId}
+		</if>
+		<if test="fatherComm != null">
+			AND father_comm=#{fatherComm}
+		</if>
 		ORDER BY 
-			create_time desc limit  #{pageNo} , #{pageSize}
+			create_time ASC
+		<if test="pageNo != null">
+			limit #{pageNo} , #{pageSize}
+		</if>			
 	</select>
 	
+	<!-- 删除评论,父级及子集评论全部删除 -->
+	<delete id="deletArticleComment" parameterType="com.zblog.dmo.ArticleComment">
+		DELETE from tb_article_comment where id=#{id} OR father_comm=#{id}
+	</delete>
+	
+	<!-- 分页查询文章评论信息 -->
+	<select id="countOfArticleComments" parameterType="java.lang.Integer" 
+		resultType="java.lang.Integer">
+	    SELECT 
+			COUNT(id)
+		FROM
+			tb_article_comment
+		WHERE 
+			1=1
+		<if test="articleId != null">	
+			AND article_id=#{articleId}
+		</if>
+		<if test="fatherComm != null">
+			AND father_comm=#{fatherComm}
+		</if>
+	</select>
 
+	<!-- 添加文章评论 -->
+	<insert id="insertArticleCommment" parameterType="com.zblog.dmo.ArticleComment">
+		INSERT INTO tb_article_comment
+			(article_id,user_name,content,blog_url,create_time,email,father_comm,be_feedback)
+		VALUES(#{articleId},#{userName},#{content},#{blogUrl},now(),#{email},#{fatherComm},#{feedback});
+	</insert>
+	
 </mapper>

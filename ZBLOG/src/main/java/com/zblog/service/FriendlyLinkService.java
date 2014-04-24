@@ -32,4 +32,11 @@ public interface FriendlyLinkService {
      * @return
      */
     boolean updateFriendLink(FriendlyLink friendlyLink);
+    
+    /**
+     * 删除友情链接
+     * @param friendlyLink
+     * @return int 操作成功量
+     */
+    boolean deleteFriendLink(FriendlyLink friendlyLink);
 }

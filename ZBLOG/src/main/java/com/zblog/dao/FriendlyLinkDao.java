@@ -16,24 +16,29 @@ public interface FriendlyLinkDao {
     
     /**
      * 
-     * 根据用户对象检索用户信息
-     * @param user
-     * @return
-     * @see [类、类#方法、类#成员]
+     * 检索所以友情链接
+     * @return List<FriendlyLink>
      */
     List<FriendlyLink> getFriendlyLinks();
     
     /**
      * 添加友情链接
      * @param friendlyLink
-     * @return
+     * @return int 操作成功量
      */
     int addFriendlyLink(FriendlyLink friendlyLink);
     
     /**
      * 更新友情链接
      * @param friendlyLink
-     * @return
+     * @return int 操作成功量
      */
     int updateFriendLink(FriendlyLink friendlyLink);
+    
+    /**
+     * 删除友情链接
+     * @param friendlyLink
+     * @return int 操作成功量
+     */
+    int deleteFriendLink(FriendlyLink friendlyLink);
 }

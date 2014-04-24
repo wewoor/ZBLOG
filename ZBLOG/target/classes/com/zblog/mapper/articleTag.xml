@@ -3,25 +3,77 @@
 <mapper namespace="com.zblog.dao.ArticleTagDao">
     
 
-	<sql id="articleColumns">
+	<sql id="articleTagColumns">
 		ID,
-		content,
-		title,
-		category,
-		create_time AS createTime,
-		deleted,
-		read_count AS readCount
+		name,
+		description
 	</sql>
+	
+	<!-- 增加Tag -->
+	<insert id="insertTag" parameterType="com.zblog.dmo.ArticleTag" >
+		INSERT INTO tb_article_tag
+			(name,description)
+		 VALUES
+		 	(#{name},#{description})
+	</insert>
+	
+	<!-- 删除一条tag -->
+	<delete id="deleteTag" parameterType="com.zblog.dmo.ArticleTag">
+		DELETE FROM tb_article_tag WHERE id=#{id} 
+	</delete>
+	
+	<!-- 删除文章tag关系 -->
+	<delete id="deleteArticleTag" parameterType="com.zblog.dmo.RelArticleTag">
+		DELETE FROM rel_article_tag WHERE 
+		<if test="id != null">
+			id=#{id}		
+		</if>
+		<if test="articleId != null">
+			article_id = #{articleId}
+		</if>
+	</delete>
+	
+		<!-- 增加Tag -->
+	<insert id="insertArticleTag" parameterType="com.zblog.dmo.RelArticleTag" >
+		INSERT INTO rel_article_tag
+			(article_id,tag_id)
+		 VALUES
+		 	(#{articleId},#{tagId})
+	</insert>
+	
+	<!-- 更新tag -->
+	<update id="updateArticleTag" parameterType="com.zblog.dmo.ArticleTag" >
+		UPDATE tb_article_tag SET 
+		<if test="name != null">
+			name = #{name}
+		</if>
+		<if test="description != null">
+			description = #{description}
+		</if>
+		WHERE id = #{id}
+	</update>
 
-	<!-- 分页查询文章信息 -->
-	<select id="getArticlesByPage" parameterType="java.util.Map" resultType="com.zblog.dmo.Article">
+	<!-- 查询全部文章标签信息并统计文章数量 -->
+	<select id="queryAllTags" resultType="com.zblog.dto.ArticleTagDto">		
 	    SELECT 
-			<include refid="articleColumns"/>
+			<include refid="articleTagColumns"/>
+			,(
+				SELECT COUNT(id) FROM rel_article_tag 
+				WHERE rel_article_tag.tag_id = tb_article_tag.id
+			 )	AS COUNT
 		FROM
-			tb_article
-		ORDER BY 
-			create_time desc limit  #{pageNo} , #{pageSize}
+			tb_article_tag
+		ORDER BY COUNT DESC
 	</select>
 	
-
+	<!-- 检索某一文章的标签信息 -->
+	<select id="queryArticleTags" parameterType="java.util.Map" 
+		resultType="com.zblog.dmo.ArticleTag">
+	    SELECT 
+			tb_article_tag.*
+		FROM tb_article_tag, rel_article_tag 
+		WHERE tb_article_tag.id = rel_article_tag.tag_id 
+		AND rel_article_tag.article_id = #{articleId}
+	</select>
+	
 </mapper>

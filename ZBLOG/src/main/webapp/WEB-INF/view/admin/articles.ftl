@@ -16,35 +16,33 @@
 		<!--添加新的文章-->
 		<div class="edit-new">
 			<div class="title">
-				按所属分类浏览：
-				<select id="artiCat">
-					<#if navCates?exists>
-					<#list navCates as navCates>
-						<option value="${navCates.id}">${navCates.name}</option>
-					</#list>
-					</#if>
-				</select>
+				<form class="form-search" action="${rc.contextPath}/admin/article/search.htm">
+				  <input type="text" style="width:250px;" name="key" class="input-medium search-query">
+				  <button type="submit" class="btn">Search</button>
+				</form>
 			</div>
-			<!--编辑位-->
+			<!--编辑位-->			
 			<div class="edit-con">
 				<table class="table">
 					<thead><tr><td>ID</td><td>标题</td><td>创建时间</td><td>操作</td></tr></thead>
 					<tbody>
 						<#if articles?exists>
+						<#assign i = 1/>
 						<#list articles as article>
 						<tr>
-							<td>${article.id}</td>
-							<td><a href="">${article.title}</a></td>
-							<td>${article.createTime?datetime}</td>
+							<td>${i}</td>
+							<td width="500px"><a class="btn-aupd" data-id="${article.id}" title="${article.title}" href="javascript:;">${article.title}</a></td>
+							<td>${article.createTime?string("yyyy年MM月dd日HH:mm")}</td>
 							<td>
-								<button type="button" class="btn btn-default btn-sm">
+								<button data-id="${article.id}" data-action="delete" type="button" class="btn-adele btn btn-default btn-sm">
  								 	删除
 								</button>	
-								<button type="button" class="btn btn-default btn-sm">
+								<button data-id="${article.id}" type="button" class="btn-aupd btn btn-default btn-sm">
  								 	编辑
 								</button>		
 							</td>
 						</tr>	
+						<#assign i=i+1/>	
 						</#list>
 						<#else>
 							<p class="error">没有发现相关的文章</p>
@@ -56,7 +54,7 @@
 			<!--分页 -->
 		   <div class="page">
 	            <#if page??> 
-	            <form id="form" action="${rc.contextPath}/article/index.htm" method="post">
+	            <form id="form" action="${rc.contextPath}/admin/articles.htm" method="post">
 	    			<input type="hidden" name="currentPage" id="currentPage" value="${page.currentPage}"></input>
 	    			<input type="hidden" name="pageSize" id="pageSize" value="10"></input>
 	    		</form>

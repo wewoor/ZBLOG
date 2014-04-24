@@ -3,25 +3,50 @@
 <mapper namespace="com.zblog.dao.UserDao">
     
 
-	<sql id="articleColumns">
+	<sql id="userColumns">
 		ID,
-		content,
-		title,
-		category,
-		create_time AS createTime,
-		deleted,
-		read_count AS readCount
+		name,
+		password,
+		show_name AS showName,
+		email,
+		description,
+		image
 	</sql>
-
-	<!-- 分页查询文章信息 -->
-	<select id="getArticlesByPage" parameterType="java.util.Map" resultType="com.zblog.dmo.Article">
-	    SELECT 
-			<include refid="articleColumns"/>
+	
+	<select id="getUser" parameterType="com.zblog.dmo.User" resultType="com.zblog.dmo.User">
+		SELECT 
+			<include refid="userColumns"/>
 		FROM
-			tb_article
-		ORDER BY 
-			create_time desc limit  #{pageNo} , #{pageSize}
+			tb_user
+		WHERE
+			1=1
+			<if test="password != null">
+				AND password=#{password}
+			</if>
+			<if test="name != null">
+				AND name=#{name}
+			</if>
+			<if test="id != null">
+				AND id=#{id}
+			</if>
+			
 	</select>
 	
-
+	<!-- 更新用户信息 -->
+	<update id="updateUser" parameterType="com.zblog.dmo.User">
+		UPDATE tb_user SET
+		<if test="showName != null and showName != '' ">
+			show_name=#{showName}
+		</if>		
+		<if test="email != null and email != '' ">
+			,email=#{email}
+		</if>	
+		<if test="description != null and description != '' ">
+			,description=#{description}
+		</if>
+		<if test="image != null and image != '' ">
+			,image=#{image}
+		</if>
+		WHERE id=#{id}	
+	</update>
 </mapper>

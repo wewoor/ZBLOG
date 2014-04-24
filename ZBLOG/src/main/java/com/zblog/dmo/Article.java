@@ -29,7 +29,7 @@ public class Article {
 	//创建时间
 	private Date createTime;
 	
-	//是否已删除
+	//是否已删除,默认0表未删除,1表示删除
 	private Integer deleted;
 	
 	//阅读数量

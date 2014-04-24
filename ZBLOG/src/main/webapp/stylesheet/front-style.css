@@ -1,138 +1,216 @@
 @charset "utf-8";
 /* CSS Document */
 
-#top {
+
+body {
+	margin:0;
+	padding:0;
+	color:#555;
+}
+
+h2 {
+	font-size: 20px !important;
+}
+
+pre {
+	border:none !important;
+}
+
+::selection {
+	background: #0088cc;
+	color: #fff;
+  	text-shadow: none;
+}
+
+#top, #container, #footer {
+	width: 1100px;
+	margin:auto;
+}
+
+.wrapper {
+	
+}
+
+.nav-wrapper {
+	width: 100%;
 	background-color:#2f3137;
-	width: auto;
-	position: fixed;
-	margin-left:-2px;
 	border-top:#2f3137 solid 1px;
 	border-left:2f3137 solid 1px;
 	border-right:2f3137 solid 1px;
 	border-radius:3px;
 	-webkit-border-radius:3px;
 	-moz-border-radius:3px;
-	width: 100%;
-	top: 0px;
 }
+
+#top {
+	height:50px;
+}	
 
 #top .logo {
 	width: 150px;
 	float: left;
-	margin-left:5px;
 }
 
-
 #container {
-	width: 900px;
-	margin: auto;
-	padding-top: 80px;
+	padding-top: 20px;
 	padding-bottom: 20px;
-	min-height: 650px;
+	min-height: 600px;
 	background: #fff;
 }
 
-body {
-	margin:0;
-	padding:0;
-	background:url(../images/body-bg.jpg) repeat;
-}
-
-#top #top_main {
-	width: 900px;
-	height: 50px;
-	margin-left:auto;
-	margin-right:auto;
-}
-
-#top #top_main .nav {
+#top .nav {
 	float: left;
 	margin-top: 15px;
-	margin-left: 50px;
-	
 }
 
-#top #top_main .nav ul {
+#top .nav ul {
 	display:inline;
 	
 }
 
-#top #top_main .nav ul li {
+#top .nav ul li {
 	display:inline;
 	margin-right:50px;
 }
 
-#top #top_main .nav ul li a {
+#top .nav ul li a {
 	text-decoration:none;
 	color:#FFFFFF;
-	font-family: "黑体";
+	font-family: "微软雅黑";
 	font-weight: normal;
+	font-size: 16px;
 }
 
-#top #top_main .nav ul li a:hover {
+#top .nav ul li a:hover {
 	color:#c9dd0a;
-	font-family: "黑体";
 }
 
-#top #top_main .nav ul li a:active {
+#top .nav ul li a:active {
 	color:#c9dd0a;
-	font-family: "黑体";
 }
 
+.main-left {
+	width: 850px; 
+	float: left;
+}
+
+.main-right {
+	width: 240px;
+	min-height: 300px;
+	float: right;
+}
+
+.main-right ul {
+	margin:0px;
+	width: 100%;
+
+}
+
+.main-right ul li {
+	list-style-type: none;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	line-height: 25px;
+	padding: 0 5px;
+	overflow: hidden;
+	border-bottom: 1px solid #EEE;
+}
+
+.main-right ul li a, .main-left ul li a {
+	font-size:8px;
+}
 
 #article {
-	padding-bottom: 20px;
-	font-family:'helvetica-neue',​helvetica,​arial,​STXihei;
-	color: #575a5d;
+	padding-right:30px;
+	padding-left:20px;
+	color:#555;
+}
+
+#article h2 {
+	font:16px "微软雅黑";
+}
+
+#article h2 a {
+	color: #0088cc;
+}
+
+#article h2 a:hover {
+	text-decoration: none;
+}
+
+#article .detail-content, #article .content,.show {
+	margin-bottom: 10px;
+	font-size: 16px;
+	text-indent: 2em;
 	line-height: 25px;
-	text-indent: 30px;
-	text-align: left;
-	padding-right: 30px;
-	padding-left: 30px;
-	background:#FFF;
+	word-wrap: break-word;
 }
 
 #article .content {
-	height:350px;
-	overflow:hidden;
+	max-height: 300px;
+}
+
+#article .detail-content {
+	height: auto;
 }
 
 #article .arInfo {
 	text-align:right;
-	border-bottom: 1px dashed;
+	border-bottom: 1px solid #ccc;
+	float: left;
+	width: 100%;
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+
+#article .arInfo>span {
+	float: right;
+	margin-left: 10px;
+}
+
+#article .arInfo>span a {
+	background: #ccc;
+	padding: 2px;
 }
 
 #article .detail {
 	text-align: right;
 }
 
+#article .arInfo ul  {
+	float: left;
+	margin:0px;
+	padding-bottom: 10px;
+}
+
 #article .arInfo ul li {
 	display:inline;
 	display-style:none;
+	margin-left: 5px;
 }
 
 #article .arInfo ul li a {
 	color:#575a5d;
 }
 
-#bottom {
+.show {
+	padding-left:20px;
+	padding-right:20px;
+	color:#555;
+}
+
+#footer {
 	height: 80px;
-	padding-top:20px;
-	margin-top: 10px;
-	color: #000;
+	padding-top: 20px;
+	color: #F5E1F1;
 	font: 12px "微软雅黑" bold;
 	text-align: center;
+	background: #2f3137;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	clear: both;
 }
-
-/*css about 目录菜单*/
-
-#share {
-	position: fixed;
-	bottom: 20px;
-	right: 0px;
-}
-
-
 
 /* bootstrap extend*/
 .pagination {
@@ -147,6 +225,123 @@ body {
 	color:#333;
 }
 
+#comment {
+	padding-right: 30px;
+	padding-left: 20px;
+}
+
+.show-comm {
+	padding: 30px;
+}
+
+.comm-li {
+	min-height: 70px;
+	margin-bottom: 10px;
+	float: left;
+	width: 100%;
+	font-size:12px;
+}
+
+.comm-li img, .comm-li .content {
+	float: left;
+}
+
+.comm-li img {
+	float:left;
+	width:48px;
+	height:48px;
+}
+
+.comm-li .content {
+	min-height: 40px;
+	width: 93%;
+	padding-left: 10px;
+}
+
+.comm-li .content span {
+	overflow: hidden;
+	width: 100%;
+	float: left;
+	color: #ccc;
+	text-overflow: ellipsis;
+	border-bottom: 1px #EEE solid;
+	height: 22px;
+}
+
+.comm-li .content p {
+	line-height: 25px;
+}
+
+.content label {
+	display: inline;
+	font-size: 12px;
+	color: #ccc;
+	line-height: 25px;
+	float:right;
+}
+
+/**jia share plugs**/
+.share {
+	float: left;
+	width: 160px;
+	padding-top: 2px;
+}
+
+#share {
+	position: fixed;
+	top: 700px;
+	right: 0px;
+}
+
+.btn-ope {
+	position: relative;
+}
+
+.btn-ope button {
+	position:absolute;
+	right: 10px;
+	top: 2px;
+}
+
+.form-wrapper {
+	padding-left: 150px;
+	padding-top: 100px;
+	background: #FFF;
+}
+
+.form-wrapper fieldset legend {
+	text-indent: 90px;
+}
+
+.feedback-content {
+	padding-left: 60px !important;
+}
+
+#article table td {
+	font-size: 12px;
+}
+
+#gotoTop {
+	width: 30px;
+	color: #333;
+	background: #ddd;
+	height: 30px;
+	position: fixed;
+	right: 80px;
+	bottom: 50px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.warning-info {
+	height: 200px;
+	vertical-align: middle;
+	text-align: center;
+	line-height: 200px;
+}
+
 .error {
 	margin: 0 0 10px;
 	height: 200px;
@@ -154,8 +349,4 @@ body {
 	font: 18px "微软雅黑" bold;
 	text-align:center;
 	padding-top:200px;
-}
-
-.comment {
-	padding: 30px;
 }

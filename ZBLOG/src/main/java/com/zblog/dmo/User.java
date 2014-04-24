@@ -26,14 +26,14 @@ public class User {
     //显示名称
     private String showName;
     
-    //访问量
-    private Integer visitCount;
-    
     //Email
     private String email;
     
     //描述
     private String description;
+    
+    //图片URL
+    private String image;
 
     public Integer getId() {
         return id;
@@ -67,14 +67,6 @@ public class User {
         this.showName = showName;
     }
 
-    public Integer getVisitCount() {
-        return visitCount;
-    }
-
-    public void setVisitCount(Integer visitCount) {
-        this.visitCount = visitCount;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -91,4 +83,11 @@ public class User {
         this.description = description;
     }
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 }

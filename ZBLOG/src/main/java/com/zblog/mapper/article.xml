@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zblog.dao.ArticleDao">
     
-
 	<sql id="articleColumns">
 		ID,
 		content,
@@ -12,11 +11,22 @@
 		deleted,
 		read_count AS readCount
 	</sql>
-
+	
+	<!-- 获取文章ID和标题列表 -->
+	<sql id="partialArticleColumns">
+		tb_article.ID,
+		tb_article.title,
+		tb_article.create_time AS createTime,
+		tb_article.read_count AS readCount
+	</sql>
+	
 	<!-- 根据相应参数查询查询文章信息（带分页） -->
-	<select id="getArticles" parameterType="java.util.Map" resultType="com.zblog.dmo.Article">
+	<select id="selectArticles" parameterType="java.util.Map" resultType="com.zblog.dto.ArticleDto">
 	    SELECT 
 			<include refid="articleColumns"/>
+			<!-- 增加显示文章评论数量字段 -->
+			,(SELECT COUNT(id) FROM tb_article_comment WHERE article_id=tb_article.id)
+			 AS commentCount
 		FROM
 			tb_article
 		WHERE
@@ -30,18 +40,27 @@
 			<if test="content != null">
 				and content=#{content}
 			</if>
-			<if test="createTime != null">
-				and create_time=#{createTime}
-			</if>
 			<if test="category != null">
 				and category=#{category}
 			</if>			
-		ORDER BY create_time ASC limit #{pageNo} , #{pageSize}
+		ORDER BY create_time DESC limit #{pageNo} , #{pageSize}
 	</select>
 	
-	<select id="getArticle" parameterType="com.zblog.dmo.Article" resultType="com.zblog.dmo.Article">
+	<select id="searchArticle" parameterType="java.util.Map" resultType="com.zblog.dto.ArticleDto">
+		SELECT 
+			<include refid="articleColumns"/> 
+		FROM 
+			tb_article 
+		WHERE 
+			deleted=0 AND id= #{id} OR title LIKE #{name};
+	</select>
+	
+	<select id="selectArticle" parameterType="com.zblog.dmo.Article" resultType="com.zblog.dto.ArticleDto">
 		SELECT 
 			<include refid="articleColumns"/>
+			<!-- 增加显示文章评论数量字段 -->
+			,(SELECT COUNT(id) FROM tb_article_comment WHERE article_id=tb_article.id)
+			 AS commentCount 
 		FROM
 			tb_article
 		WHERE
@@ -55,6 +74,87 @@
 			<if test="category != null">
 				and category=#{category}
 			</if>	
+	</select>
+	
+	<!-- 获取热门文章,数量暂定为15条 -->
+	<select id="selectHotArticles" resultType="com.zblog.dto.ArticleDto">
+		SELECT
+			<include refid="partialArticleColumns"/>
+		FROM
+			tb_article
+		WHERE 
+			deleted=0 
+		ORDER BY read_count DESC limit 0,15
+	</select>
+	
+	<!-- 按标签分类获取文章,数量暂定为15条 -->
+	<select id="selectArticlesByTag" parameterType="java.util.Map"
+	 	resultType="com.zblog.dto.ArticleDto">
+		SELECT
+			<include refid="partialArticleColumns"/>
+		FROM
+			tb_article,rel_article_tag
+		WHERE 			
+		 	tb_article.deleted=0
+		 AND
+			rel_article_tag.article_id=tb_article.id
+		 AND 
+		 	rel_article_tag.tag_id=#{tagId}
+
+		ORDER BY tb_article.create_time DESC limit #{pageNo} , #{pageSize}
+	</select>
+	
+	<!-- 获取文章归档列表,按月份归档 -->
+	<select id="selectArchiveByTime" resultType="com.zblog.dto.ArticleDto">
+		SELECT 
+			COUNT(id) AS count,create_time AS createTime
+		FROM 
+			tb_article 
+		WHERE		
+			deleted=0 
+		GROUP BY 
+			MONTH(create_time),YEAR(create_time)
+	</select>
+	
+	<!-- 按时间段检索文章 -->
+	<select id="selectArticlesByTime" parameterType="java.util.Map" 
+		resultType="com.zblog.dto.ArticleDto">
+	    SELECT 
+			<include refid="articleColumns"/>
+			<!-- 增加显示文章评论数量字段 -->
+			,(SELECT COUNT(id) FROM tb_article_comment WHERE article_id=tb_article.id)
+			 AS commentCount
+		FROM
+			tb_article
+		WHERE
+			deleted=0 AND MONTH(create_time)=MONTH(#{time})
+	</select>
+	
+	<!-- 文章数量统计 -->
+	<select id="countOfArticles" parameterType="java.util.Map" resultType="int">
+	    SELECT 
+			count(id)
+		FROM
+			tb_article
+		WHERE
+			deleted=0
+			<if test="category != null">
+				and category=#{category}
+			</if>			
+	</select>
+	
+	<!-- 统计按标签检索文章列表的数量 -->
+	<select id="countOfArticleByTag" parameterType="java.util.Map" resultType="int">
+		SELECT
+			COUNT(tb_article.id)
+		FROM
+			tb_article,rel_article_tag 
+		WHERE 
+			rel_article_tag.article_id=tb_article.id
+		 AND 
+		 	rel_article_tag.tag_id=#{tagId}
+		 AND
+		 	tb_article.deleted=0
 	</select>
 	
 	<!-- 添加文章 -->
@@ -75,6 +175,8 @@
 	<!-- 更新文章信息 -->
 	<update id="updateArticle" parameterType="com.zblog.dmo.Article">
 		UPDATE tb_article SET
+		
+		<!-- 更新文章操作的主要字段 -->
 		<if test="title != null">
 			title=#{title},
 		</if>
@@ -82,11 +184,13 @@
 			content=#{content},
 		</if>
 		<if test="category != null">
-			category=#{category},
-		</if>		
-		<if test="readCount != null">
-			read_count=#{readCount},
+			category=#{category}
 		</if>
+		
+		<!-- 更新文章的其他字段 -->
+		<if test="readCount != null">
+			read_count=#{readCount}
+		</if>		
 		<if test="deleted != null">
 			deleted=#{deleted}
 		</if>	

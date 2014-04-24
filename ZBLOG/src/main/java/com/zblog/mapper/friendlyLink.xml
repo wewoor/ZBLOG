@@ -16,6 +16,11 @@
 			tb_friendly_link
 	</select>
 	
+	<!-- 删除一条友情链接 -->
+	<delete id="deleteFriendLink" parameterType="com.zblog.dmo.FriendlyLink">
+		DELETE FROM tb_friendly_link where id=#{id}
+	</delete>
+	
 	<!-- 添加新链接 -->
 	<insert id="addFriendlyLink" parameterType="com.zblog.dmo.FriendlyLink">
 		INSERT INTO tb_friendly_link(
@@ -33,7 +38,8 @@
 		</if>
 		<if test="link != null">
 			link=#{link}
-		</if>
+		</if>	
+		WHERE id=#{id}
 	</update>
 
 </mapper>

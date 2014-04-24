@@ -5,32 +5,49 @@
 */
 
 .wrapper {
-	margin:20px;
-	padding:0px;
+	padding: 0px;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: #eee;
 }
 
 .wrapper .bg-nav {
-	float:left;
 	width: 200px;
+	height: 100%;
 	background-color: #EBE9E8;
 }
 
 .bg-nav .nav {
-	height: 380px;
+	height: 350px;
+	margin-top: 20px;
 }
 
 .bg-nav p {
-	text-align: center;
+	text-align: left;
+	margin-left: 10px;
 }
 
 .wrapper .ope-area {
 	margin-left:20px;
 	min-width: 700px;
+	left: 200px;
+	top:20px;
 }
 
 .wrapper .bg-nav, .wrapper .ope-area {
 	float:left;	
 	min-height:400px;
+	position: absolute;
+}
+
+.bg-nav ul li a {
+	border-bottom: 1px solid #ddd;
+	font-family: "微软雅黑";
+}
+
+.title {
+	padding-left:10px;
 }
 
 .title select {
@@ -46,7 +63,35 @@
 	text-decoration: none;
 }
 
+.edit-con {
+	width: 900px;
+}
+
+.edit-con .tag {
+	text-align: left !important;
+}
+
+.tag a {
+	padding:2px;
+}
+
 .edit-con p {
 	text-align: right;
 	margin-top: 20px;
+}
+
+.edit-con table thead td, .edit-con table tbody td {
+	text-align: center;
+}
+
+.edit-footer {
+	text-align: center;
+}
+
+.tag-mark {
+	background:#ccc;
+}
+
+#cke_1_contents {
+	height:300px !important;
 }
