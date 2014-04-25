@@ -12,8 +12,8 @@ h2 {
 	font-size: 20px !important;
 }
 
-pre {
-	border:none !important;
+pre code {
+	font: normal 12pt Ubuntu Mono;
 }
 
 ::selection {
@@ -95,7 +95,7 @@ pre {
 }
 
 .main-right {
-	width: 240px;
+	width: 250px;
 	min-height: 300px;
 	float: right;
 }
@@ -117,11 +117,11 @@ pre {
 }
 
 .main-right ul li a, .main-left ul li a {
-	font-size:8px;
+	font-size:12px;
 }
 
 #article {
-	padding-right:30px;
+	padding-right:20px;
 	padding-left:20px;
 	color:#555;
 }

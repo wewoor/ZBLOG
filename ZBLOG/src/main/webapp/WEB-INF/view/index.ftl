@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Ziv小威</title>
-	<#include "/layout/head.ftl">
+	<#include "/layout/head.ftl">	
 </head>
 <body>
 	<!-- header ---->	
@@ -19,11 +19,7 @@
 					</a>
 				</h2>
 				<div class="content">
-					  <#if (article.content?length > 400)>                     
-                             ${article.content?substring(0,400)}...
-                       <#else>
-                       		 ${article.content}
-                       </#if>
+					  ${article.content?string}
 				</div>
 				<p>
 				      <a style="font-size:12px" href="${rc.contextPath}/article/read.htm?id=${article.id}">继续阅读→</a>			
@@ -73,6 +69,8 @@
 						}
 						$("#form").submit();
 					});
+					
+					$(".content").wordLimit(450);
 				});
 	        </script> 
     	</div>
