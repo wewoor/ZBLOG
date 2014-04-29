@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zblog.dao.ArticleCategoryDao">
+
+	<sql id="artCateColumns">
+		ID,
+		name,
+		description,
+		sort
+	</sql>
+
+	<!-- 检索分类列表信息 -->
+	<select id="selectArticleCategorys" resultType="com.zblog.dmo.ArticleCategory">
+	    SELECT 
+			<include refid="artCateColumns"/>
+		FROM
+			tb_article_category
+		ORDER BY 
+			sort desc
+	</select>
+	
+	<!-- 检索分类列表信息并统计文章数量 -->
+	<select id="selectArtCatesAndCount" resultType="com.zblog.dto.ArticleCategoryDto">
+	    SELECT 
+			<include refid="artCateColumns"/>
+			,(SELECT COUNT(tb_article.id) FROM tb_article 
+			WHERE tb_article.deleted=0 AND tb_article.category = tb_article_category.id) 
+			AS articleCount
+		FROM
+			tb_article_category
+		ORDER BY 
+			sort desc
+	</select>
+	
+	<!-- 添加新分类 -->
+	<insert id="insertCategory" parameterType="com.zblog.dmo.ArticleCategory">
+		INSERT INTO tb_article_category
+			(name,description)
+		 VALUES
+		 	(#{name},#{description})
+	</insert>
+	
+	<!-- 删除一条分类 -->
+	<delete id="deleteCategory" parameterType="com.zblog.dmo.ArticleCategory">
+		DELETE FROM tb_article_category WHERE id=#{id} 
+	</delete>
+	
+	<!-- 更新分类 -->
+	<update id="updateCategory" parameterType="com.zblog.dmo.ArticleCategory" >
+		UPDATE tb_article_category SET 
+		<if test="name != null">
+			name = #{name}
+		</if>
+		<if test="description != null">
+			description = #{description}
+		</if>
+		WHERE id = #{id}
+	</update>
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zblog.dao.ExtendPageDao">
+    
+
+	<sql id="pageColumns">
+		ID,
+		name,
+		url,
+		page_content AS pageContent,
+		display	
+	</sql>
+	
+	<select id="selectPage" parameterType="com.zblog.dmo.ExtendPage" resultType="com.zblog.dmo.ExtendPage">
+		SELECT 
+			<include refid="pageColumns"/>
+		FROM
+			tb_extend_page
+		WHERE
+			<if test="id != null">
+				id=#{id}
+			</if>
+			
+	</select>
+	
+	<!-- 获取所有页面 -->
+	<select id="selectAllPages"  resultType="com.zblog.dmo.ExtendPage">
+		SELECT 
+			ID,name,url,display
+		FROM
+			tb_extend_page
+	</select>
+	
+	<!-- 增加Page -->
+	<insert id="insertPage" parameterType="com.zblog.dmo.ExtendPage">
+		INSERT INTO tb_extend_page
+			(name,url,page_content,display)
+		 VALUES
+		 	(#{name},#{url},#{pageContent},#{display})
+	</insert>
+	
+	<!-- 更新用户信息 -->
+	<update id="updatePageInfo" parameterType="com.zblog.dmo.ExtendPage">
+		UPDATE tb_extend_page SET
+		<if test="name != null and name != '' ">
+			name=#{name}
+		</if>		
+		<if test="url != null and url != '' ">
+			,url=#{url}
+		</if>	
+		<if test="pageContent != null and pageContent != '' ">
+			,page_content=#{pageContent}
+		</if>
+		<if test="display != null">
+			,display=#{display}
+		</if>
+		WHERE id=#{id}	
+	</update>
+	
+	<!-- 删除页面 -->
+	<delete id="deletePage" parameterType="com.zblog.dmo.ExtendPage">
+		DELETE FROM tb_extend_page WHERE id = #{id}
+	</delete>
+</mapper>
