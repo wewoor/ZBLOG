@@ -201,7 +201,7 @@ function listenFlinkEve() {
 	//编辑
 	$(".flink-edit").click(function() {
 		action = "update";
-		reqUrl = "/frlink/update.htm";
+		reqUrl = "/admin/frlink/update.htm";
 		_id = $(this).attr("lId");
 		_name = $("#l"+_id).html();
 		_link = $("#l"+_id).attr("href");

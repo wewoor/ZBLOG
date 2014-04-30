@@ -48,7 +48,7 @@
 			<!--分页 -->
 		   <div class="page">
 	            <#if page??> 
-	            <form id="form" action="${rc.contextPath}/article/nav.htm" method="post">
+	            <form id="form" action="${rc.contextPath}/article/index.htm" method="post">
 	    			<input type="hidden" name="currentPage" id="currentPage" value="${page.currentPage}"></input>
 	    			<input type="hidden" name="pageSize" id="pageSize" value="5"></input>
 	    		</form>

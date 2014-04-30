@@ -319,6 +319,7 @@ pre code {
 
 #article table td {
 	font-size: 12px;
+	border-top: 1px solid #EEE;
 }
 
 #gotoTop {
