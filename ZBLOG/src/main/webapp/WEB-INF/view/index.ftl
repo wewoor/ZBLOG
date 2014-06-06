@@ -5,7 +5,6 @@
 	<#include "/layout/head.ftl">	
 </head>
 <body>
-	<!-- header ---->	
 	<#include "/layout/front_nav.ftl">
 	<!-- container ---->
 	<div id="container">

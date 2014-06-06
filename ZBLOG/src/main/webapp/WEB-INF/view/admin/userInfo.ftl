@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>后台管理/添加新的文章</title>
+	<title>后台管理/用户资料管理</title>
 	<#include "/layout/head.ftl">
 	<link href="${rc.contextPath}/stylesheet/back-style.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" charset="utf-8" src="${rc.contextPath}/javascripts/back-main.js"></script>
@@ -68,6 +68,7 @@
 				    		</#if>
 				    	</label>
 				    </div>
+				</div>
 			</form>
 		</div>
 	</div>

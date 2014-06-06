@@ -34,6 +34,28 @@ public class BackUserController extends BaseController {
 		return response;	
 	}
 	
+	/**
+	 * 初始化账户密码管理页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/account")
+	public ModelAndView initAccountPage(HttpServletRequest request) {
+		
+		ModelAndView response = new ModelAndView("/admin/account_edit");
+		//文章标签
+		User user = new User();
+		user.setId(Integer.parseInt(request.getSession().getAttribute("UserID").toString()));
+		try {
+			user = userService.getUser(user);
+		} catch (Exception e) {
+			LOGGER.error("BackUserController.initArticleTagsPage()",e.getMessage());
+		}
+		response.addObject("user", user);	
+		return response;	
+	}
+	
+	
     /**
      * 
      * 更新用户资料
@@ -41,23 +63,29 @@ public class BackUserController extends BaseController {
      * @see [类、类#方法、类#成员]
      */
     @RequestMapping("/update")
-    public ModelAndView updateUserInfo(User user) {
+    public ModelAndView updateUserInfo(User user, HttpServletRequest request) {
         
     	ModelAndView response = new ModelAndView("/admin/userInfo");
+    	
         try {  
-            //参数正常
+        	String redirect = request.getParameter("redirect");
+        	// 如果重定向标记不为空,且等于account，则返回页面地址到账户密码修改页面
+        	if (redirect != null && redirect.equals("account")) {
+        		 response = new ModelAndView("/admin/account_edit");
+        	}
+        	//返回FAIL
+        	response.addObject("message", FAIL);
+           
             if (user != null) {
                 //如果更新成功,返回SUCCESS
                 if (userService.updateUser(user)) { 
                 	response.addObject("message", SUCCESS);
-                }   
+                } 
             }        
         } catch (Exception e) {
                 LOGGER.error("BackUserController.updateUserInfo()",e.getMessage());
         }
-        //返回FAIL
-    	response.addObject("user", user);	
-     	response.addObject("message", FAIL);
+        response.addObject("user", user);
     	return response; 
     }
 

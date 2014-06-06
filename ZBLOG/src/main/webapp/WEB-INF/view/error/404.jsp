@@ -13,6 +13,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-	<p class="error">您所查找的资源不存在，错误代码：404<a href="<%=basePath%>article/index.htm">返回首页</a></p>
+	<p class="error">您所查找的资源不存在，错误代码：404<a href="article/index.htm">返回首页</a></p>
 </body>
 </html>

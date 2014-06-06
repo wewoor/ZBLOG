@@ -25,9 +25,7 @@ CREATE TABLE `rel_article_tag` (
   `article_id` int(11) NOT NULL,
   `tag_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
-
-/*Data for the table `rel_article_tag` */
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_article` */
 
@@ -42,9 +40,7 @@ CREATE TABLE `tb_article` (
   `deleted` int(11) DEFAULT '0' COMMENT '逻辑删除，0表示未删除，1表示删除',
   `read_count` int(11) DEFAULT '0' COMMENT '文章访问量',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
-
-/*Data for the table `tb_article` */
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_article_category` */
 
@@ -56,9 +52,7 @@ CREATE TABLE `tb_article_category` (
   `description` text COMMENT '分类描述',
   `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序字段',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
-/*Data for the table `tb_article_category` */
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_article_comment` */
 
@@ -75,9 +69,7 @@ CREATE TABLE `tb_article_comment` (
   `father_comm` int(11) DEFAULT '0' COMMENT '父级评论，默认0',
   `be_feedback` varchar(200) DEFAULT NULL COMMENT '如果为回复内容，此字段为回复人姓名链接',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
-
-/*Data for the table `tb_article_comment` */
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_article_tag` */
 
@@ -88,9 +80,7 @@ CREATE TABLE `tb_article_tag` (
   `name` varchar(20) NOT NULL,
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
-/*Data for the table `tb_article_tag` */
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_extend_page` */
 
@@ -103,9 +93,7 @@ CREATE TABLE `tb_extend_page` (
   `page_content` text COMMENT '导航页面的具体内容',
   `display` int(1) DEFAULT '0' COMMENT '是否显示该页面，0表示显示，1非显示',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
-/*Data for the table `tb_extend_page` */
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `tb_friendly_link` */
 
@@ -117,10 +105,6 @@ CREATE TABLE `tb_friendly_link` (
   `link` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
-/*Data for the table `tb_friendly_link` */
-
-insert  into `tb_friendly_link`(`id`,`name`,`link`) values (4,'Ziv博客园','http://www.cnblogs.com/zivxiaowei/'),(5,'ZivCSDN','http://blog.csdn.net/zivxiaowei');
 
 /*Table structure for table `tb_user` */
 
@@ -136,10 +120,6 @@ CREATE TABLE `tb_user` (
   `image` text COMMENT '图片',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-/*Data for the table `tb_user` */
-
-insert  into `tb_user`(`id`,`name`,`password`,`show_name`,`email`,`description`,`image`) values (1,'wewoor','H3BqjOsDt7OBn8y/CtYvQw==','Ziv小威','wewoor@foxmail.com',NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

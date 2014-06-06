@@ -22,8 +22,7 @@ import org.codehaus.jackson.map.type.TypeFactory;
  * @param <T>
  * 
  */
-public class JSONUtils
-{
+public class JSONUtils {
     
     private static Logger logger = Logger.getLogger(JSONUtils.class.getName());
     

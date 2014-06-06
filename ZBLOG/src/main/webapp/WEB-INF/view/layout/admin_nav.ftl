@@ -20,8 +20,11 @@
 	  	<a href="${rc.contextPath}/admin/page/list.htm">页面管理</a>
 	  <li> 
 	  <li class="">
-	  	<a href="${rc.contextPath}/ucenter/userInfo.htm">账户管理</a>
+	  	<a href="${rc.contextPath}/ucenter/userInfo.htm">用户资料管理</a>
 	  <li>  
+	  <li class="">
+	  	<a href="${rc.contextPath}/ucenter/account.htm">账户密码管理</a>
+	  <li> 
 	  <li class="">
 	  	<a href="${rc.contextPath}/article/index.htm">返回首页</a>
 	  <li>                    

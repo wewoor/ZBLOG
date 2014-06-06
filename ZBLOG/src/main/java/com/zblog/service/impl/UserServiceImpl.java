@@ -30,7 +30,12 @@ public class UserServiceImpl implements UserService {
 			user.setPassword(CryptUtils.
 					encryptString(user.getPassword()));
 		}
-		return userDao.getUser(user);
+		// 检索用户信息后，对密码重新解密后set
+		user = userDao.getUser(user);
+		if (user != null) {
+			user.setPassword(CryptUtils.decryptString(user.getPassword()));			
+		}
+		return user;
 	}
 
 	@Override

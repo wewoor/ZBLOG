@@ -70,7 +70,4 @@ public class BackFriendLinkController extends BaseController {
 		return FAIL;
 	}
 	
-	
-	
-	
 }

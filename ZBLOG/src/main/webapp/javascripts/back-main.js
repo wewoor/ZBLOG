@@ -298,14 +298,41 @@ function listenCategory() {
 	});
 }
 
-//main function
+/**
+ * 监听账户管理功能
+ */
+function listenAccount() {
+	$("#formAccount").submit(function(){
+		
+		// 取得表单参数，进行合法性验证
+		var account = $.trim($("#account").val()),
+			pwd1 = $.trim($("#pwd1").val()),
+			pwd2 = $.trim($("#pwd2").val());
+		
+		if (account === ""){
+			alert("账户名不可为空！");
+			return false;
+		} else if (pwd1 === "") {
+			alert("密码不可为空！");
+			return false;
+		} else if (pwd1 !== pwd2) {
+			alert("2次输入的密码不一致！");
+			return false;
+		} else 
+			return true;
+		
+	});
+}
+// main function
 $(document).ready(function() {
-	//监听文章
+	// 监听文章
 	listenArticleEve();
-	//监听标签事件
+	// 监听标签事件
 	listenTagEve();
-	//监听友联
+	// 监听友联
 	listenFlinkEve();
-	//监听分类
+	// 监听分类
 	listenCategory();
+	// 监听账户密码管理
+	listenAccount();
 });
