@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>后台管理/添加新的文章</title>
+	<title>后台管理/添加新页面</title>
 	<#include "/layout/head.ftl">
 	<link href="${rc.contextPath}/stylesheet/back-style.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" charset="utf-8" src="${rc.contextPath}/javascripts/back-main.js"></script>
@@ -22,14 +22,14 @@
 				<div class="title">
 				<ul>
 						<li>
-							<label>页面名称：</label>
+							<label>导航名称：</label>
 							<input type="text" value="<#if page.name?exists>${page.name?string}</#if>" name="name"/>
 						<li>
 						<li>
-							<label>页面链接：</label>
+							<label>导航链接：</label>
 							<input type="text" value="<#if page.url?exists>${page.url?string}</#if>" name="url"/>
 						</li>
-						<li>
+						<!-- <li>
 							<label>是否显示
 							<#if page.display?exists>
 								<#if page.display!=1>
@@ -39,11 +39,11 @@
 								</#if>
 							</#if>
 							</label>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				<div class="edit-con">
-					<label>该页内容：</label>
+					<label>该导航页内容：</label>
 					<textarea name="pageContent" id="editor1" rows="50" cols="150">
 						<#if page.pageContent?exists>${page.pageContent?html}</#if>
 					</textarea>
