@@ -8,12 +8,10 @@
             	<li><a rel="tooltip" title="日志列表" href="${rc.contextPath}/article/list.htm">日志列表</a></li>
             	<#if pages?exists>
             		<#list pages as page>
-            		<#if page.display==0>
             		<#if page.url?exists && page.url!="">
             	     	<li><a rel="tooltip" title="${page.name}" href="${page.url}">${page.name}</a></li>            		      	
             		<#else>
                  	 	<li><a rel="tooltip" title="${page.name}" href="${rc.contextPath}/view/page.htm?id=${page.id}">${page.name}</a></li>            		
-            		</#if>
             		</#if>
             		</#list>
             	</#if>         
