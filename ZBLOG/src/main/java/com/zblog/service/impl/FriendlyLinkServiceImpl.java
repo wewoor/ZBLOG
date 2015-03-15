@@ -2,19 +2,16 @@ package com.zblog.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.zblog.dao.FriendlyLinkDao;
 import com.zblog.dmo.FriendlyLink;
+import com.zblog.service.BaseService;
 import com.zblog.service.FriendlyLinkService;
 
 @Component
-public class FriendlyLinkServiceImpl implements FriendlyLinkService {
-    
-	@Autowired
-	private FriendlyLinkDao friendlyLinkDao;
-	
+public class FriendlyLinkServiceImpl extends BaseService
+	implements FriendlyLinkService {
+
 	/**
 	 * 获取友情链接
 	 */

@@ -3,6 +3,8 @@
  */
 package com.zblog.controller.front;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,7 +34,8 @@ public class ArticleCommentController extends BaseController {
 	 */
 	@RequestMapping("/add")
 	@ResponseBody
-	public String addArticleComment(ArticleComment comment) {
+	public String addArticleComment(ArticleComment comment, 
+			HttpServletRequest request) {
 		
 		try {
 			//如果博客地址不为空
@@ -46,11 +49,18 @@ public class ArticleCommentController extends BaseController {
 			//去除内容里面的html标签元素
 			comment.setContent(RegexpCheckUtils.htmlRemoveTag(comment.getContent()));
 			//如果成功添加文章，则返回true
-			if (articleCommentService.addComment(comment)) { return "SUCCESS"; }						
+			if (articleCommentService.addComment(comment)) { 
+				// 发送评论邮件
+				String readUrl = request.getScheme()+"://"+
+						request.getServerName()+":"+request.getServerPort()+
+						request.getContextPath()+"/article/read.htm?id="+
+						comment.getArticleId();
+				new Email(comment, readUrl).start();				
+				return "SUCCESS"; 
+			}						
 		} catch (Exception e) { 
             LOGGER.error("ArticleController.addArticleComment();", e.getMessage());
-		}
-		
+		}	
 		return "FAIL";
 	}
 	
@@ -93,5 +103,30 @@ public class ArticleCommentController extends BaseController {
 			LOGGER.error("ArticleTagController.deleteTag()",e.getMessage());
 		}
 		return FAIL;
+	}
+	
+	/**
+	 * 发送邮件服务
+	 * @author Ziv
+	 */
+	private class Email extends Thread {	
+		
+		private ArticleComment comment;
+		private String readUrl;
+	
+		public Email(ArticleComment comment, String readUrl) {
+			super();
+			this.comment = comment;
+			this.readUrl = readUrl;
+		}
+
+		@Override
+		public void run() {
+			try {
+				articleCommentService.notifyByEmail(comment, readUrl);
+			} catch (Exception e) {
+				LOGGER.error("ArticleController.Email.send();", e.getMessage());
+			}
+		}		
 	}
 }

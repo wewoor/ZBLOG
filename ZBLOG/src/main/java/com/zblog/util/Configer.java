@@ -13,7 +13,7 @@ public class Configer extends Properties {
 
 	private Configer() {
 		String path = this.getClass().getClassLoader()
-				.getResource("conf.properties").getPath();
+				.getResource("config.properties").getPath();
 		System.out.println("读取系统配置文件,path=" + path);
 		File file = new File(path);
 		try {

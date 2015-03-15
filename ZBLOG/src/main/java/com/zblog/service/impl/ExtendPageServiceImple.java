@@ -2,18 +2,15 @@ package com.zblog.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.zblog.dao.ExtendPageDao;
 import com.zblog.dmo.ExtendPage;
+import com.zblog.service.BaseService;
 import com.zblog.service.ExtendPageService;
 
 @Component
-public class ExtendPageServiceImple implements ExtendPageService {
+public class ExtendPageServiceImple extends BaseService  implements ExtendPageService {
 
-	@Autowired
-	private ExtendPageDao extendPageDao;
 	
 	@Override
 	public ExtendPage getPage(Integer pageId) {

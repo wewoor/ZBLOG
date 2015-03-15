@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>后台管理/导航管理</title>
-	<#include "/layout/head.ftl">
+	<#include "/layout/admin_head.ftl">
 	<link href="${rc.contextPath}/stylesheet/back-style.css" rel="stylesheet" type="text/css" />	
     <script type="text/javascript" charset="utf-8" src="${rc.contextPath}/javascripts/back-main.js"></script>
 </head>
@@ -44,7 +44,7 @@
 
 			<!--分页 -->
 		   <div class="page">
-	            <#if page??> 
+	            <#if page?exists> 
 	            <form id="form" action="${rc.contextPath}/article/index.htm" method="post">
 	    			<input type="hidden" name="currentPage" id="currentPage" value="${page.currentPage}"></input>
 	    			<input type="hidden" name="pageSize" id="pageSize" value="10"></input>

@@ -1,10 +1,9 @@
 package com.zblog.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.zblog.dao.UserDao;
 import com.zblog.dmo.User;
+import com.zblog.service.BaseService;
 import com.zblog.service.UserService;
 import com.zblog.util.CryptUtils;
 
@@ -17,10 +16,7 @@ import com.zblog.util.CryptUtils;
  * @since  [产品/模块版本]
  */
 @Component
-public class UserServiceImpl implements UserService {
-
-	@Autowired
-	private UserDao userDao;
+public class UserServiceImpl extends BaseService implements UserService {
 	
 	@Override
 	public User getUser(User user) {

@@ -2,19 +2,16 @@ package com.zblog.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.zblog.dao.ArticleCategoryDao;
 import com.zblog.dmo.ArticleCategory;
 import com.zblog.dto.ArticleCategoryDto;
 import com.zblog.service.ArticleCategoryService;
+import com.zblog.service.BaseService;
 @Component
-public class ArticleCategoryServiceImpl implements ArticleCategoryService {
-	
-	@Autowired
-	private ArticleCategoryDao categoryDao;
-	
+public class ArticleCategoryServiceImpl extends BaseService 
+	implements ArticleCategoryService {
+
 	/**
 	 * 获取所有的文章分类
 	 */

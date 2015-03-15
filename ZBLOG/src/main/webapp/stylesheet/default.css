@@ -1,0 +1,400 @@
+body {
+	background: url(../images/body_bg.jpg) repeat fixed;
+	background-color: #EFE9DB;
+	word-wrap: break-word;
+	font-family: Georgia, Hiragino Sans GB,\5b8b\4f53;
+}
+
+html, body, 
+div, dl, dt,
+dd, ul, ol, li, h1, h2, 
+h3, h4, h5, h6, pre, code, 
+form, fieldset, legend, input,
+button, textarea, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, em {
+	font-size: 100%;
+	font-weight: normal;
+}
+
+::selection {
+	background: #F1263F;;
+	color: #fff;
+}
+
+a, img {
+	webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+a, a:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+table {
+	max-width: 100%;
+	background-color: transparent;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+textarea, input[type='text'], input[type='password'], select {
+	padding: 4px 9px;
+	border: 1px solid #ccc;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.075) inset;
+	background: 0;
+}
+
+.warpper {
+	width: 920px;
+	margin: 0 auto;
+	padding: 0 80px;
+	background: url(../images/bg_2.jpg) repeat-y scroll left top;
+}
+
+body, a, input, .logo a, .nav-menu, .con-title, .con-txt {
+	color: #8e7f6f;
+}
+
+a:hover, .logo a:hover, .nav-menu:hover, .con-title:hover {
+	color: #eba3a9;
+}
+
+/*澶撮儴鏍峰紡*/
+.header {
+	text-align: center;
+}
+
+.logo {
+	padding: 40px 0;
+	font-size: 30px;
+	line-height: 40px;
+}
+
+.nav {
+	background: url(../images/nav_bg.png) no-repeat scroll center top;
+}
+
+.nav li {
+	display: inline-block;
+	margin: 0 20px;
+}
+
+.nav, .nav-menu {
+	height: 60px;
+	line-height: 60px;
+}
+
+.nav-menu {
+	font-size: 16px;
+}
+
+/*涓讳綋鏍峰紡*/
+.main {
+	padding: 40px 0;
+}
+
+.content {
+	float: left;
+	width: 660px;
+}
+
+.menu {
+	float: right;
+	width: 200px;
+}
+
+.menu .head-pic {
+}
+
+.head-pic .desc {
+	margin-top: 20px;
+}
+
+.menu .list {
+}
+
+.list h5 {
+	color: #eba3a9;
+	font-size: 18px;
+	line-height: 24px;
+	padding: 10px 0px;
+}
+
+.list h5, .list ul li {
+	border-bottom: 1px solid #EEE;
+}
+
+.list ul li {
+	list-style-type: none;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	line-height: 30px;
+	padding: 0 5px;
+	overflow: hidden;
+	font-size: 12px;
+}
+
+.txt {
+	width: 180px;
+	line-height: 20px;
+}
+
+.article {
+	margin: 0 0 30px;
+	padding: 0 0 30px;
+	border-bottom: 1px solid #eee;
+}
+
+.con-title {
+	margin: 0 0 16px;
+	font-size: 20px;
+	line-height: 30px;
+}
+
+.con-txt {
+	line-height: 25px;
+	font-size: 14px;
+	overflow-x: scroll;
+}
+
+.con-txt p {
+	margin: 0 0 20px;
+}
+
+.con-txt pre {
+	overflow-x: scroll;
+	width:100%;
+}
+
+.info {
+	margin: 10px 0 0;
+	font-size: 12px;
+}
+
+.info a {
+	float: left;
+	margin: 0 15px 0 0;
+	padding: 4px 8px;
+	line-height: 16px;
+	background: #eba3a9;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.info a, .info a:hover {
+	color: #fff;
+}
+
+.info a:hover {
+	opacity: .8;
+}
+
+.form-wrapper fieldset, #comment fieldset {
+	border: none;
+}
+
+.form-wrapper fieldset legend {
+	font-size: 20px;
+	border-bottom: 1px solid #EEE;
+	width: 50%;
+	text-align: center;
+	padding-bottom: 10px;
+
+}
+
+.control-group {
+	line-height: 40px;
+	width: 100%;
+	text-align: center;
+}
+
+.btn {
+	line-height: 25px;
+	padding: 0px 5px;
+	background: #fff;
+	border: 1px solid #EEE;
+	color: #8e7f6f;
+	cursor: pointer;
+}
+
+.btmar {
+	margin:15px;
+}
+
+
+/*搴曢儴*/ 
+.footer {
+	padding: 80px 0 40px;
+	clear: both;
+}
+
+
+/** jia share plugs **/
+.share {
+	float: left;
+	width: 160px;
+	padding-top: 2px;
+}
+
+/* bootstrap extend*/
+.pagination {
+	text-align: left;
+}
+
+.pagination ul {
+	background:#FFF;
+}
+
+.pagination ul li {
+	display:inline;
+	margin-right: 10px;
+}
+
+.pagination ul li a ,.pagination ul li span {
+	color: #8e7f6f;
+	padding: 5px 10px;
+	border: 1px solid #8e7f6f;
+	font-size: 12px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.pagination ul li a:hover {
+	color: #eba3a9;
+	border-color: #eba3a9;
+}
+
+.pagination .active a {
+	color: #eba3a9;
+	border-color: #eba3a9;
+	cursor:default;
+}
+
+.pagination .disabled span {
+	border-color: #EEE;
+	cursor:default;
+}
+
+.align-cen {
+	text-align:center;
+}
+
+.tab table tr, .tab table trtd {
+	line-height:30px;
+}
+
+#comment {
+}
+
+.show-comm {
+	padding-top: 30px;
+}
+
+.comm-li {
+	min-height: 70px;
+	margin-bottom: 10px;
+	float: left;
+	width: 100%;
+	font-size:12px;
+}
+
+.comm-li img, .comm-li .comcon {
+	float: left;
+}
+
+.comm-li img {
+	width:48px;
+	height:48px;
+}
+
+.comm-li .comcon {
+	min-height: 40px;
+	padding-left: 10px;
+	width:600px;
+}
+
+.comm-li .comcon label {
+	display: inline;
+	font-size: 12px;
+	color: #ccc;
+	line-height: 25px;
+	float: right;
+}
+
+
+.comm-li img, .comm-li .comcon {
+	float: left;
+}
+
+.comm-li .comcon span {
+	overflow: hidden;
+	width: 100%;
+	float: left;
+	color: #ccc;
+	text-overflow: ellipsis;
+	border-bottom: 1px #EEE solid;
+	height: 22px;
+}
+
+.comm-li .comcon p {
+	line-height: 25px;
+}
+
+#comment fieldset legend {
+	font-size: 20px;
+	border-bottom: 1px solid #EEE;
+	width: 100%;
+	text-align: left;
+	padding-bottom: 10px;
+
+}
+
+.feedback-content {
+	padding-left: 58px !important;
+}
+
+.com-form {
+	margin-top: 10px;
+}
+
+.com-form table tbody tr {
+	line-height:40px;
+	font-size:14px;
+}
+
+.tdmar {
+	padding-left:10px;
+}
+
+#inputContent {
+	resize: none;
+}
+
+#gotoTop {
+	width: 30px;
+	color: #333;
+	background: #ddd;
+	height: 30px;
+	position: fixed;
+	right: 80px;
+	bottom: 50px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.mart {
+	margin-top:20px;
+}
+
+
+

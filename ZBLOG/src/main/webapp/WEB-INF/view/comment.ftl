@@ -3,7 +3,7 @@
 <#list comments as data>
 <div class="comm-li">
 	<img src="${rc.contextPath}/images/header-icon.png"/>	
-	<div class="content">
+	<div class="comcon">
 	<#if data.comment?exists>
 		<span>
 			<a target="_blank" href="${data.comment.blogUrl}">
@@ -23,7 +23,7 @@
 	<!-- 评论回复 -->
 	<#if data.feedBack?exists>
 		<#list data.feedBack as com>
-			<div class="feedback-content content">
+			<div class="feedback-content comcon">
 				<span>
 					<a target="_blank" href="${com.blogUrl}">
 						${com.userName}
@@ -53,17 +53,17 @@
 	
 		$(function(){
 			<#if page?exists>
-				currentPage = "${page.currentPage}";	
+				currentPage = parseInt("${page.currentPage}");	
 			</#if>	
 			pageSize = 8;
 			//分页URL初始化
 			$(".pagination ul li a").click(function(){
-				if($(this).attr("name")=="last"){
-					currentPage = parseInt($("#currentPage").val())-1;
-				}else if($(this).attr("name")=="next"){
-					currentPage = parseInt($("#currentPage").val())+1;					
-				}else{
-					currentPage = $(this).html();
+				if ($(this).attr("name")=="last") {
+					currentPage = currentPage-1;
+				} else if ($(this).attr("name")=="next"){
+					currentPage = currentPage+1;					
+				} else {
+					currentPage = parseInt($(this).html());
 				}
 				var id = $("#articleId").val();
 				var comment = new Comment();
@@ -91,7 +91,7 @@
 				if (data == "SUCCESS") {
 					alert("删除成功！");
 					var comment = new Comment();
-					comment.loadArtiComment($("#articleId").val(),currentPage, pageSize);
+					comment.loadArtiComment($("#articleId").val(), currentPage, pageSize);
 				} else {
 					alert("删除失败！");
 				}

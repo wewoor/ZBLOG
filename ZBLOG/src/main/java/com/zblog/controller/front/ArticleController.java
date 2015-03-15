@@ -160,14 +160,43 @@ public class ArticleController extends BaseController {
         } catch (Exception e) {
             LOGGER.error("ArticleController.getArticle();", e.getMessage());
         } 
-        
-        response.addObject("article", article);    
-        response.addObject("pages", pages); 
+        if (article != null && pages != null) {        	
+        	response.addObject("article", article);    
+        	response.addObject("pages", pages); 
+        }
         response.addObject("flag", flag); 
+        //添加内容导航列表
+        addContentNavList(response);
 
         return response;
     }
     
+    /**
+     * 根据关键字检索文章
+     * @param key
+     * @return
+     */
+    @RequestMapping("/search")
+    public ModelAndView searchByKey(String q) {
+        
+        ModelAndView response = new ModelAndView("/article_list");
+        List<ArticleDto> data = null;
+
+        try {
+        	//检索当月文章列表
+        	data = articleService.searchArticle(q);
+        } catch (Exception e) {
+           LOGGER.error("ArticleController." +
+           		"searchByKey();", e.getMessage());
+        }
+        if (data != null) {
+        	response.addObject("articles", data);        	
+        }
+        response.addObject("label", "搜索结果");
+        //添加内容导航列表
+        addContentNavList(response);
+        return response;
+    }
 
     /**
      * 添加内容导航列表
@@ -206,5 +235,5 @@ public class ArticleController extends BaseController {
         response.addObject("pages", pages); 
         response.addObject("tags", tags); 
     }
-        
+         
 }

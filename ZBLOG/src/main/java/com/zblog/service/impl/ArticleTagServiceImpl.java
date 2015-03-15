@@ -3,21 +3,18 @@ package com.zblog.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zblog.dao.ArticleTagDao;
 import com.zblog.dmo.Article;
 import com.zblog.dmo.ArticleTag;
 import com.zblog.dmo.RelArticleTag;
 import com.zblog.service.ArticleTagService;
+import com.zblog.service.BaseService;
 
 @Component
-public class ArticleTagServiceImpl implements ArticleTagService {
-	
-	@Autowired
-	private ArticleTagDao articleTagDao;
+public class ArticleTagServiceImpl extends BaseService 
+	implements ArticleTagService {
 	
 	/**
 	 * 获取所有标签

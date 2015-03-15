@@ -4,27 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zblog.dao.ArticleDao;
-import com.zblog.dao.ArticleTagDao;
 import com.zblog.dmo.Article;
 import com.zblog.dmo.ArticleTag;
 import com.zblog.dto.ArticleDto;
 import com.zblog.dto.Page;
 import com.zblog.dto.PageResult;
 import com.zblog.service.ArticleService;
+import com.zblog.service.BaseService;
 
 @Component
-public class ArticleServiceImpl implements ArticleService {
-    
-    @Autowired
-    private ArticleDao articleDao;
-    
-	@Autowired
-	private ArticleTagDao articleTagDao;
+public class ArticleServiceImpl  extends BaseService 
+	implements ArticleService {
     
     /**
      * 获取文章

@@ -25,6 +25,13 @@ public interface ArticleCommentDao {
     public List<ArticleComment> getArticleComments(Map<String, Object> param);
     
     /**
+     * 根据ID获取评论
+     * @param id
+     * @return ArticleComment
+     */
+    public ArticleComment getCommentById(Integer id);
+    
+    /**
      * 添加文章评论
      * @param comment
      * @return int

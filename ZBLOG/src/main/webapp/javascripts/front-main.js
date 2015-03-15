@@ -82,7 +82,7 @@ function Comment() {
 				} else if (data == "INVALIDE_URL") {
 					alert("无效的博客地址"); 
 				} else if (data == "FAIL") {
-					alert("留言内容不支持<script>标签"); 
+					alert("评论失败~！"); 
 				}
 			});		
 		}
@@ -92,13 +92,14 @@ function Comment() {
 	this.loadArtiComment = function(id, current, size) {
 
 		$.get(contextPath+"/comment/load.htm",{
-			articleId:id,
-			currentPage:current,
-			pageSize:size},
+			articleId: id,
+			currentPage: current,
+			pageSize:size
+			},
 			function(data) {
-			if (data != null) {
-				$(".show-comm").html(data);
-			}
+				if (data != null) {
+					$(".show-comm").html(data);
+				}
 		});
 	};
 }

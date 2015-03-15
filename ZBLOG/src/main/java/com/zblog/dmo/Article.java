@@ -34,8 +34,18 @@ public class Article {
 	
 	//阅读数量
 	private Integer readCount;
+	
+	
+    public Article() {
+		super();
+	}
 
-    public Integer getId() {
+	public Article(Integer id) {
+		super();
+		this.id = id;
+	}
+
+	public Integer getId() {
         return id;
     }
 

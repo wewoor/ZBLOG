@@ -41,4 +41,13 @@ public interface ArticleCommentService {
      * @return int
      */
     public int countOfArticleComments(Integer articleId);
+    
+    /***
+     * 发送评论通知
+     * @param comment
+     * @param readUrl
+     * @throws Exception
+     */
+    public void notifyByEmail(ArticleComment comment, String readUrl) 
+			throws Exception;
 }
