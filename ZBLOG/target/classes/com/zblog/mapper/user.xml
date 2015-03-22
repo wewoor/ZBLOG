@@ -47,6 +47,12 @@
 		<if test="image != null and image != '' ">
 			,image=#{image}
 		</if>
+		<if test="name != null and name != '' ">
+			name=#{name}
+		</if>	
+		<if test="password != null and password != '' ">
+			,password=#{password}
+		</if>					
 		WHERE id=#{id}	
 	</update>
 </mapper>

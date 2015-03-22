@@ -1,5 +1,4 @@
 body {
-	background: url(../images/body_bg.jpg) repeat fixed;
 	background-color: #EFE9DB;
 	word-wrap: break-word;
 	font-family: Georgia, Hiragino Sans GB,\5b8b\4f53;
@@ -59,7 +58,7 @@ textarea, input[type='text'], input[type='password'], select {
 }
 
 body, a, input, .logo a, .nav-menu, .con-title, .con-txt {
-	color: #8e7f6f;
+	color: rgb(68, 68, 68);
 }
 
 a:hover, .logo a:hover, .nav-menu:hover, .con-title:hover {
@@ -117,9 +116,6 @@ a:hover, .logo a:hover, .nav-menu:hover, .con-title:hover {
 	margin-top: 20px;
 }
 
-.menu .list {
-}
-
 .list h5 {
 	color: #eba3a9;
 	font-size: 18px;
@@ -161,16 +157,11 @@ a:hover, .logo a:hover, .nav-menu:hover, .con-title:hover {
 .con-txt {
 	line-height: 25px;
 	font-size: 14px;
-	overflow-x: scroll;
+	overflow: hidden;
 }
 
 .con-txt p {
 	margin: 0 0 20px;
-}
-
-.con-txt pre {
-	overflow-x: scroll;
-	width:100%;
 }
 
 .info {

@@ -14,6 +14,7 @@ import com.zblog.dto.Page;
 import com.zblog.dto.PageResult;
 import com.zblog.service.ArticleService;
 import com.zblog.service.BaseService;
+import com.zblog.util.HTMLUtils;
 
 @Component
 public class ArticleServiceImpl  extends BaseService 
@@ -58,6 +59,10 @@ public class ArticleServiceImpl  extends BaseService
         	if (articles != null) {
         		for (ArticleDto art : articles) {
         			param.put("articleId", art.getId());
+        			// 次处对页面输出作字符限制 
+        			String content = HTMLUtils.html2Text(art.getContent());       			
+        			content = content.length() > 500 ? content.substring(0, 500) : content;   					
+        			art.setContent(content + " ..." );
         			List<ArticleTag> tags = articleTagDao.queryArticleTags(param);
         			if (tags != null) {
         				art.setTags(tags);

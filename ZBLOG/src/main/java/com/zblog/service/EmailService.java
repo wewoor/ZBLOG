@@ -11,21 +11,11 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.slf4j.LoggerFactory;
 
 import com.zblog.util.Configer;
 
-public class EmailService implements Runnable {
+public class EmailService {
 	
-	private String title , content, targetAddr;// 标题， 内容， 目标地址
-	
-	
-	public EmailService(String title, String content, String targetAddr) {
-		super();
-		this.title = title;
-		this.content = content;
-		this.targetAddr = targetAddr;
-	}
 
 	/**
 	 * 发送邮件服务
@@ -33,7 +23,7 @@ public class EmailService implements Runnable {
 	 * @param email
 	 * @throws Exception
 	 */
-	public static void send(String title,String conent, String targetAddr) 
+	public static void send(String title,String content, String to) 
 			throws Exception {
 		 
 		//读取邮箱账户和密码
@@ -53,13 +43,13 @@ public class EmailService implements Runnable {
 		 Address address = new InternetAddress(account);
 		 message.setFrom(address);
 		 //收件地址
-		 Address toAddress = new InternetAddress(targetAddr);
+		 Address toAddress = new InternetAddress(to);
 		 message.setRecipient(MimeMessage.RecipientType.TO, toAddress);
 		 
 		 //主题
 		 message.setSubject(title);
 		 //正文
-		 String htmlBody = conent;
+		 String htmlBody = content;
 		 //声明多媒体对象
 		 Multipart mp = new MimeMultipart();
 		 MimeBodyPart htmlPart = new MimeBodyPart();
@@ -76,16 +66,6 @@ public class EmailService implements Runnable {
 		 transport.sendMessage(message, message.getAllRecipients());
 		 transport.close(); 
 		 return;
-	}
-
-	@Override
-	public void run() {
-		try {
-			send(title, content, targetAddr);
-		} catch (Exception e) {	
-			LoggerFactory.getLogger(EmailService.class).
-				error("EmailService.send():", e);
-		}		
 	}
 
 }

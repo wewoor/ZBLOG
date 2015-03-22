@@ -36,6 +36,17 @@
 		</if>			
 	</select>
 	
+	<!-- 根据评论ID获取品论信息 -->
+	<select id="getCommentById" parameterType="java.lang.Integer" 
+		resultType="com.zblog.dmo.ArticleComment">
+		SELECT 
+			<include refid="articleColumns"/>
+		FROM
+			tb_article_comment
+		WHERE 
+			id=#{id}
+	</select>
+	
 	<!-- 删除评论,父级及子集评论全部删除 -->
 	<delete id="deletArticleComment" parameterType="com.zblog.dmo.ArticleComment">
 		DELETE from tb_article_comment where id=#{id} OR father_comm=#{id}

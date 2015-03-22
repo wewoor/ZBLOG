@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 	<title><#if article?exists>${article.title}</#if></title>	
 	<#include "/layout/head.ftl">	
-	<link rel="stylesheet" href="${rc.contextPath}/highlight/styles/solarized_dark.css">
+	<link rel="stylesheet" href="${rc.contextPath}/highlight/styles/rainbow.css">
 	<script language="javascript" charset="utf-8" type="text/javascript" src="${rc.contextPath}/highlight/highlight.pack.js"></script>
 	<script language="javascript" charset="utf-8" type="text/javascript" src="${rc.contextPath}/javascripts/filterHtml.js"></script>
 	<script language="javascript" charset="utf-8" type="text/javascript" src="${rc.contextPath}/javascripts/front-main.js"></script>
@@ -26,9 +26,7 @@
 						<h2 class="con-title">
 							<a target="_blank" href="javascript:;">${article.title}</a>
 						</h2>
-						<div class="con-txt">
-							 ${article.content}
-						</div>
+						<div class="con-txt">${article.content}</div>
 					</div>
 					<div class="info">
 						<a class="date" href="#">${article.createTime?string("yyyy-MM-dd")}</a>

@@ -7,7 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 </head>
 <body>
-	<p class="error">服务器内部错误，错误代码：505<a href="${rc.contextPath}/article/index.htm">返回首页</a></p>
+	<p class="error">服务器内部错误，错误代码：505<a href="/">返回首页</a></p>
 	<!-- container ---->	
 </body>
 </html>

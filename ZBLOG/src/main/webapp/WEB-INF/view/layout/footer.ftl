@@ -4,10 +4,10 @@
 		<!-- GoStats JavaScript Based Code -->
 		<script type="text/javascript" src="http://gostats.cn/js/counter.js"></script>
 		<script type="text/javascript">_gos='monster.gostats.cn';_goa=471995;
-		_got=7;_goi=3;_goz=0;_god='hosts';_gol='计数器代码';_GoStatsRun();</script>
-		<noscript><a target="_blank" title="计数器代码" 
-		href="http://gostats.cn"><img alt="计数器代码" 
-		src="http://monster.gostats.cn/bin/count/a_471995/t_7/i_3/z_0/show_hosts/counter.png" 
+		_got=7;_goi=3;_goz=0;_god='visitors';_gol='网站流量统计工具';_GoStatsRun();</script>
+		<noscript><a target="_blank" title="网站流量统计工具" 
+		href="http://gostats.cn"><img alt="网站流量统计工具" 
+		src="http://monster.gostats.cn/bin/count/a_471995/t_7/i_3/z_0/show_visitors/counter.png" 
 		style="border-width:0" /></a></noscript>
 		<!-- End GoStats JavaScript Based Code -->
 		位访客&nbsp;|&nbsp;

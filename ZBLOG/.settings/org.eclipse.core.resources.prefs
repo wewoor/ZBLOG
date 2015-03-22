@@ -3,5 +3,6 @@ encoding//src/main/java/com/zblog/util/Configer.java=UTF-8
 encoding//src/main/java/com/zblog/util/JSONUtils.java=UTF-8
 encoding//src/main/webapp/WEB-INF/view/error/404.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/view/error/505.jsp=UTF-8
+encoding//src/main/webapp/stylesheet/default.css=UTF-8
 encoding/<project>=UTF-8
 separateDerivedEncodings=true

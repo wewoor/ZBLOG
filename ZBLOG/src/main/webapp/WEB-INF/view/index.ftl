@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
-<title>Ziv小威 - Java程序员</title>
+<title>Ziv小威 - Web工程师</title>
 <#include "/layout/head.ftl">	
 </head>
 <body>
@@ -20,9 +20,8 @@
 							</a>
 						</h2>
 						<div class="con-txt">
-							 ${article.content?string}
+							 ${article.content?html}
 						</div>
-						<script type="text/javascript">$(".con-txt").wordLimit(450);</script>
 					</div>
 					<div class="info">
 						<a class="date" href="#">${article.createTime?string("yyyy-MM-dd")}</a>
@@ -42,7 +41,7 @@
 					<p class="error">没有发现相关的文章</p>
 				</#if>
 				<!--分页 -->
-			   <div class="page">
+			   	<div class="page">
 		            <#if page?exists> 
 		            <form id="form" action="${rc.contextPath}/article/index.htm" method="post">
 		    			<input type="hidden" name="currentPage" id="currentPage" value="${page.currentPage}"></input>

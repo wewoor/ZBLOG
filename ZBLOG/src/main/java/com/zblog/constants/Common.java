@@ -20,4 +20,5 @@ public class Common {
 	
 	//表示删除操作标志
 	public final static Integer IS_DELETE = 1;
+
 }

@@ -3,6 +3,7 @@
  */
 package com.zblog.controller.front;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -50,18 +51,20 @@ public class ArticleCommentController extends BaseController {
 			comment.setContent(RegexpCheckUtils.htmlRemoveTag(comment.getContent()));
 			//如果成功添加文章，则返回true
 			if (articleCommentService.addComment(comment)) { 
+				
 				// 发送评论邮件
 				String readUrl = request.getScheme()+"://"+
 						request.getServerName()+":"+request.getServerPort()+
 						request.getContextPath()+"/article/read.htm?id="+
 						comment.getArticleId();
+
 				new Email(comment, readUrl).start();				
-				return "SUCCESS"; 
+				return SUCCESS; 
 			}						
 		} catch (Exception e) { 
             LOGGER.error("ArticleController.addArticleComment();", e.getMessage());
 		}	
-		return "FAIL";
+		return FAIL;
 	}
 	
     /**
