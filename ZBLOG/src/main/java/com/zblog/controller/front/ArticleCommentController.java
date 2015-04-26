@@ -16,6 +16,7 @@ import com.zblog.dmo.ArticleComment;
 import com.zblog.dto.CommentsDto;
 import com.zblog.dto.Page;
 import com.zblog.dto.PageResult;
+import com.zblog.util.Configer;
 import com.zblog.util.RegexpCheckUtils;
 
 
@@ -52,12 +53,18 @@ public class ArticleCommentController extends BaseController {
 			//如果成功添加文章，则返回true
 			if (articleCommentService.addComment(comment)) { 
 				
+				String domain = Configer.getInstance().getProperty("blog_domain");
 				// 发送评论邮件
-				String readUrl = request.getScheme()+"://"+
-						request.getServerName()+":"+request.getServerPort()+
-						request.getContextPath()+"/article/read.htm?id="+
-						comment.getArticleId();
-
+				String readUrl = "";
+				if (!domain.equals("")) {
+					readUrl = "http://"+domain+"/article/read.htm?id="+
+							comment.getArticleId();
+				} else {
+					readUrl = request.getScheme()+"://"+
+							request.getServerName()+":"+request.getServerPort()+
+							request.getContextPath()+"/article/read.htm?id="+
+							comment.getArticleId();					
+				}
 				new Email(comment, readUrl).start();				
 				return SUCCESS; 
 			}						
